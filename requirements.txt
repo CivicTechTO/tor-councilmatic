@@ -1,5 +1,6 @@
 dj-database-url==0.4.0
 Django==1.8.3
+django-configurations==1.0
 -e git://github.com/civictechto/django-councilmatic.git@62bc51cb77309f733e6f47167ce9e291e81bd292#egg=django_councilmatic-chicago
 django-haystack==2.4.0
 gunicorn==19.4.5
