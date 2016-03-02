@@ -12,7 +12,7 @@ django-loaddata: ## Load objects updated within the 2 weeks
 	python manage.py loaddata --update_since $(MONTH_AGO)
 
 heroku-deploy: ## Deploy to Heroku via git-push
-	git push heroku toronto:master
+	git push heroku master
 
 heroku-pg-push: ## Push the tor_councilmatic DB to Heroku
 	heroku pg:push tor_councilmatic DATABASE

@@ -1,5 +1,7 @@
 # Toronto Councilmatic
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 Keep track of what Toronto City Council is doing.
 
 ## Setup

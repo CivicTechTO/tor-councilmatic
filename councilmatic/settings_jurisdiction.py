@@ -12,7 +12,7 @@ class JurisdictionConfig(object):
     OCD_JURISDICTION_ID = values.Value('ocd-jurisdiction/country:us/state:il/place:chicago/government')
     LEGISLATIVE_SESSIONS = values.ListValue(['2007', '2011', '2015']) # the last one in this list should be the current legislative session
     CITY_NAME = values.Value('Chicago')
-    CITY_NAME_SHORT = values.Value('Chicago')
+    CITY_NAME_SHORT = values.Value(CITY_NAME)
 
     # VOCAB SETTINGS FOR FRONT-END DISPLAY
     CITY_VOCAB = {
@@ -30,12 +30,18 @@ class JurisdictionConfig(object):
     # The rest are optional #
     #########################
 
+
     # this is for populating meta tags
+    if os.environ.get('HEROKU_APP_NAME') :
+        HEROKU_URL = 'https://{}.herokuapp.com'.format(os.environ['HEROKU_APP_NAME'])
+
+    SITE_URL = values.URLValue(HEROKU_URL)
+
     SITE_META = {
         'site_name' : 'Chicago Councilmatic',
         'site_desc' : 'City Council, demystified. Keep tabs on Chicago legislation, aldermen, & meetings.',
         'site_author' : 'DataMade',
-        'site_url' : 'https://chicago.councilmatic.org',
+        'site_url' : SITE_URL,
         'twitter_site': '@DataMadeCo',
         'twitter_creator': '@DataMadeCo',
     }
