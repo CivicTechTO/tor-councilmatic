@@ -34,9 +34,13 @@ class JurisdictionConfig(object):
 
     # this is for populating meta tags
     if os.environ.get('HEROKU_APP_NAME') :
+        # Available when labs feature has been turned on: `heroku labs:enable runtime-dyno-metadata`
+        # See: https://devcenter.heroku.com/articles/dyno-metadata
         HEROKU_URL = 'https://{}.herokuapp.com'.format(os.environ['HEROKU_APP_NAME'])
+    else :
+        HEROKU_URL = None
 
-    SITE_URL = values.URLValue(HEROKU_URL)
+    SITE_URL = values.URLValue(HEROKU_URL or 'https://chicago.councilmatic.org')
 
     SITE_META = {
         'site_name' : 'Chicago Councilmatic',
