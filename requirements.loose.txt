@@ -1,0 +1,5 @@
+dj-database-url
+-e git://github.com/civictechto/django-councilmatic.git@chicago#egg=django-councilmatic
+gunicorn
+psycopg2
+whitenoise
