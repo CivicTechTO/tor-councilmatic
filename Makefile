@@ -1,17 +1,21 @@
 pip-install: ## Install pinned packages from requirements.lock
-	@pip install -r requirements.lock
+	pip install -r requirements.lock
 
 pip-update: ## Update packages from requirements.unlocked.txt
-	@pip install --upgrade -r requirements.unlocked.txt
+	pip install --upgrade -r requirements.unlocked.txt
 
 pip-lock: ## Lock packages into requirements.lock
-	@pip freeze > requirements.lock
+	pip freeze > requirements.lock
+
+django-loaddata: ## Load objects updated within the past month
+	$(eval MONTH_AGO := $(shell date --date='1 month ago' '+%F'))
+	python manage.py loaddata --update_since $(MONTH_AGO)
 
 heroku-deploy: ## Deploy to Heroku via git-push
-	@git push heroku toronto:master
+	git push heroku toronto:master
 
 heroku-pg-push: ## Push the tor_councilmatic DB to Heroku
-	@heroku pg:push tor_councilmatic DATABASE
+	heroku pg:push tor_councilmatic DATABASE
 
 .PHONY: help
 
