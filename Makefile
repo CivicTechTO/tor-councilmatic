@@ -7,6 +7,9 @@ pip-update: ## Update the packages
 pip-lock: ## Lock the packages
 	@pip freeze > requirements.txt
 
+heroku-deploy: ## Deploy to Heroku via git-push
+	@git push heroku toronto:master
+
 .PHONY: help
 
 help:
