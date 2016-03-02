@@ -1,11 +1,11 @@
-pip-install: ## Install pinned packages from requirements.txt
-	@pip install -r requirements.txt
+pip-install: ## Install pinned packages from requirements.lock
+	@pip install -r requirements.lock
 
-pip-update: ## Update packages from requirements.loose.txt
-	@pip install --upgrade -r requirements.loose.txt
+pip-update: ## Update packages from requirements.unlocked.txt
+	@pip install --upgrade -r requirements.unlocked.txt
 
-pip-lock: ## Lock packages into requirements.txt
-	@pip freeze > requirements.txt
+pip-lock: ## Lock packages into requirements.lock
+	@pip freeze > requirements.lock
 
 heroku-deploy: ## Deploy to Heroku via git-push
 	@git push heroku toronto:master
