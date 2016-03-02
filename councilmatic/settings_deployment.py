@@ -8,7 +8,7 @@ SECRET_KEY = 'replacethiswithsomethingsecret'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Set this to True while you are developing
-DEBUG = False
+DEBUG = True
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
