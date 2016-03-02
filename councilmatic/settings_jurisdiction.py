@@ -1,16 +1,18 @@
 # These are all the settings that are specific to a jurisdiction
 
-###############################
-# These settings are required #
-###############################
+from configurations import values
 
 class JurisdictionConfig(object):
-    OCD_CITY_COUNCIL_ID = 'ocd-organization/ef168607-9135-4177-ad8e-c1f7a4806c3a'
-    CITY_COUNCIL_NAME = 'Chicago City Council'
-    OCD_JURISDICTION_ID = 'ocd-jurisdiction/country:us/state:il/place:chicago/government'
-    LEGISLATIVE_SESSIONS = ['2007', '2011', '2015'] # the last one in this list should be the current legislative session
-    CITY_NAME = 'Chicago'
-    CITY_NAME_SHORT = 'Chicago'
+    ###############################
+    # These settings are required #
+    ###############################
+
+    OCD_CITY_COUNCIL_ID = values.Value('ocd-organization/ef168607-9135-4177-ad8e-c1f7a4806c3a')
+    CITY_COUNCIL_NAME = values.Value('Chicago City Council')
+    OCD_JURISDICTION_ID = values.Value('ocd-jurisdiction/country:us/state:il/place:chicago/government')
+    LEGISLATIVE_SESSIONS = values.ListValue(['2007', '2011', '2015']) # the last one in this list should be the current legislative session
+    CITY_NAME = values.Value('Chicago')
+    CITY_NAME_SHORT = values.Value('Chicago')
 
     # VOCAB SETTINGS FOR FRONT-END DISPLAY
     CITY_VOCAB = {

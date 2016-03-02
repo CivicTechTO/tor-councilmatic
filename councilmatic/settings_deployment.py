@@ -3,7 +3,6 @@
 import os
 from configurations import values
 
-
 class DeploymentConfig(object):
     # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = 'replacethiswithsomethingsecret'

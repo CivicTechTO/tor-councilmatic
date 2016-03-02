@@ -51,6 +51,8 @@ class Default(DeploymentConfig, JurisdictionConfig, Configuration):
         pass
 
     MIDDLEWARE_CLASSES = (
+        'django.middleware.security.SecurityMiddleware',
+        'whitenoise.middleware.WhiteNoiseMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.cache.UpdateCacheMiddleware',
         'django.middleware.common.CommonMiddleware',
@@ -59,7 +61,6 @@ class Default(DeploymentConfig, JurisdictionConfig, Configuration):
         'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
-        'django.middleware.security.SecurityMiddleware',
         'django.middleware.cache.FetchFromCacheMiddleware',
     )
 
@@ -108,4 +109,5 @@ class Default(DeploymentConfig, JurisdictionConfig, Configuration):
 
     HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
-    #STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+    STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+    #STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
