@@ -7,8 +7,8 @@ pip-update: ## Update packages from requirements.unlocked.txt
 pip-lock: ## Lock packages into requirements.lock
 	pip freeze > requirements.lock
 
-django-loaddata: ## Load objects updated within the past month
-	$(eval MONTH_AGO := $(shell date --date='1 month ago' '+%F'))
+django-loaddata: ## Load objects updated within the 2 weeks
+	$(eval MONTH_AGO := $(shell date --date='2 weeks ago' '+%F'))
 	python manage.py loaddata --update_since $(MONTH_AGO)
 
 heroku-deploy: ## Deploy to Heroku via git-push
