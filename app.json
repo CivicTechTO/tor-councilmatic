@@ -32,13 +32,13 @@
     "DJANGO_SITE_URL": {
       "required": false,
       "description": "Website URL, if hosting on your own domain."
-    }
+    },
     "DJANGO_LEGISLATIVE_SESSIONS": {
       "required": true,
       "value": "2007,2011,2015"
     },
     "DISABLE_COLLECTSTATIC": {
-      "Heroku's automatic `./manage.py collectstatic` execution should be disabled for our app.",
+      "description": "Heroku's automatic `./manage.py collectstatic` execution should be disabled for our app.",
       "value": "1"
     }
   },
