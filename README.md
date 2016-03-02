@@ -1,6 +1,6 @@
-# Chicago Councilmatic
+# Toronto Councilmatic
 
-Keep track of what Chicago City Council is doing.
+Keep track of what Toronto City Council is doing.
 
 ## Setup
 
@@ -16,13 +16,13 @@ We recommend using [virtualenv](http://virtualenv.readthedocs.org/en/latest/virt
 Once you have virtualenvwrapper set up,
 
 ```bash
-mkvirtualenv chi-councilmatic
-git clone https://github.com/datamade/chi-councilmatic.git
-cd chi-councilmatic
+mkvirtualenv tor-councilmatic
+git clone https://github.com/civictechto/tor-councilmatic.git
+cd tor-councilmatic
 pip install -r requirements.txt
 ```
 
-Afterwards, whenever you want to use this virtual environment to work on chi-councilmatic, run `workon chi-councilmatic`
+Afterwards, whenever you want to use this virtual environment to work on tor-councilmatic, run `workon tor-councilmatic`
 
 **OPTIONAL: install django-councilmatic locally**  
 If you plan on making changes to core councilmatic features (as opposed to Chicago-specific stuff), you'll want to install django-councilmatic locally instead of installing from pypi.
@@ -32,7 +32,7 @@ cd ..
 git clone https://github.com/datamade/django-councilmatic.git
 cd django-councilmatic
 python setup.py develop
-cd ../chi-councilmatic
+cd ../tor-councilmatic
 ```
 
 **Create your settings file**
@@ -42,7 +42,6 @@ cp councilmatic/settings_deployment.py.example councilmatic/settings_deployment.
 ```
 
 Then edit `councilmatic/settings_deployment.py`:
-- `DATABASES['default']['USER']` should be your username
 - if you're setting up councilmatic for local development, use a dummy cache by setting `CACHES['default']['BACKEND']` to `'django.core.cache.backends.dummy.DummyCache'`. if you're deploying, leave it as is
 
 **Setup your database**
@@ -50,7 +49,8 @@ Then edit `councilmatic/settings_deployment.py`:
 Before we can run the website, we need to create a database.
 
 ```bash
-createdb chi_councilmatic
+createdb tor_councilmatic
+createuser tor_councilmatic
 ```
 
 Then, run migrations
@@ -67,10 +67,10 @@ python manage.py createsuperuser
 
 ## Importing data from the open civic data api
 
-Run the loaddata management command. This will take a while, depending on volume (Chicago has ~70k bills, & it takes ~1 hour to load the data).
+Run the loaddata management command. This may take a while, depending on volume.
 
 ```bash
-python manage.py loaddata
+python manage.py loaddata --update_since $(date --date='1 month ago' '+%F')
 ```
 
 By default, the loaddata command is smart about what it looks at on the OCD API. If you already have bills loaded, it won't look at everything on the API - it'll look at the most recently updated bill in your database, see when that bill was last updated on the OCD API, & then look through everything on the API that was updated after that point. If you'd like to load things that are older than what you currently have loaded, you can run the loaddata management command with a `--delete` option, which removes everything from your database before loading.
