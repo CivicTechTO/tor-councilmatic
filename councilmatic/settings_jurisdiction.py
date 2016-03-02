@@ -1,5 +1,6 @@
 # These are all the settings that are specific to a jurisdiction
 
+import os
 from configurations import values
 
 class JurisdictionConfig(object):
