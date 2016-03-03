@@ -22,13 +22,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
-class Default(DeploymentConfig, JurisdictionConfig, Configuration):
-
+class Base(Configuration):
     ALLOWED_HOSTS = [
         'localhost', '127.0.0.1',
         '.datamade.us',
         '.councilmatic.org'
     ]
+
+class Default(DeploymentConfig, JurisdictionConfig, Base):
 
 
     # Application definition
