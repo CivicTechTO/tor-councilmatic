@@ -13,8 +13,17 @@ class JurisdictionConfig(object):
     OCD_JURISDICTION_ID = values.Value('ocd-jurisdiction/country:us/state:il/place:chicago/government')
     LEGISLATIVE_SESSIONS = values.ListValue(['2007', '2011', '2015']) # the last one in this list should be the current legislative session
     CITY_NAME = values.Value('Chicago')
-    # TODO: Figure out how to make this properly inherit from CITY_NAME
     CITY_NAME_SHORT = values.Value('Chicago')
+
+    # TODO: Yuck.
+    # See: https://github.com/jazzband/django-configurations/issues/149
+    @classmethod
+    def setup(cls):
+        default_city_short = cls.CITY_NAME_SHORT.value
+        super().setup()
+        if default_city_short == cls.CITY_NAME_SHORT:
+            cls.CITY_NAME_SHORT = cls.CITY_NAME
+
 
     # VOCAB SETTINGS FOR FRONT-END DISPLAY
     CITY_VOCAB = {

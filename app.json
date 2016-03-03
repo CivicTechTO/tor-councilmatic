@@ -27,8 +27,7 @@
       "value": "Chicago"
     },
     "DJANGO_CITY_NAME_SHORT": {
-      "required": true,
-      "value": "Chicago"
+      "required": false
     },
     "DJANGO_SITE_URL": {
       "required": false,
