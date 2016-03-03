@@ -10,6 +10,10 @@ Keep track of what Toronto City Council is doing.
 
 * Python 3.4
 * PostgreSQL 9.4 +
+* GNU make
+
+* You may view descriptions of all `make` helper tasks by running `make`
+  from within the project directory.
 
 **Install app requirements**
 
@@ -39,11 +43,6 @@ cd ../tor-councilmatic
 
 **Create your settings file**
 
-```bash
-cp councilmatic/settings_deployment.py.example councilmatic/settings_deployment.py
-```
-
-Then edit `councilmatic/settings_deployment.py`:
 - if you're setting up councilmatic for local development, use a dummy cache by setting `CACHES['default']['BACKEND']` to `'django.core.cache.backends.dummy.DummyCache'`. if you're deploying, leave it as is
 
 **Setup your database**
@@ -58,7 +57,7 @@ createuser tor_councilmatic
 Then, run migrations
 
 ```bash
-python manage.py migrate --no-initial-data
+make python-migrate
 ```
 
 Create an admin user - set a username & password when prompted
@@ -72,7 +71,7 @@ python manage.py createsuperuser
 Run the loaddata management command. This may take a while, depending on volume.
 
 ```bash
-python manage.py loaddata --update_since $(date --date='1 month ago' '+%F')
+make python-loaddata
 ```
 
 By default, the loaddata command is smart about what it looks at on the OCD API. If you already have bills loaded, it won't look at everything on the API - it'll look at the most recently updated bill in your database, see when that bill was last updated on the OCD API, & then look through everything on the API that was updated after that point. If you'd like to load things that are older than what you currently have loaded, you can run the loaddata management command with a `--delete` option, which removes everything from your database before loading.
