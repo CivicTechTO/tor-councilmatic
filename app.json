@@ -4,7 +4,7 @@
   "logo": "https://imgur.com/QWKCS3j.png",
   "success_url": "/",
   "scripts": {
-    "postdeploy": "make django-loaddata"
+    "postdeploy": "make django-migrate && make django-loaddata"
   },
   "repository": "https://github.com/civictechto/tor-councilmatic",
   "website": "http://ocd.datamade.us/",

@@ -7,6 +7,9 @@ pip-update: ## Update packages from requirements.unlocked.txt
 pip-lock: ## Lock packages into requirements.lock
 	pip freeze > requirements.lock
 
+django-migrate: ## Run Django migrations
+	python manage.py migrate --no-initial-data
+
 django-loaddata: ## Load objects updated within the 2 weeks
 	$(eval MONTH_AGO := $(shell date --date='2 weeks ago' '+%F'))
 	python manage.py loaddata --update_since $(MONTH_AGO)
