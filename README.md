@@ -1,5 +1,7 @@
 # Toronto Councilmatic
 
+[![HuBoard badge](http://img.shields.io/badge/Hu-Board-7965cc.svg)](https://huboard.com/CivicTechTO/tor-councilmatic/)
+
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 Keep track of what Toronto City Council is doing.
