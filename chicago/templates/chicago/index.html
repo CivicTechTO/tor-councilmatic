@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-{% block title %}Chicago City Council, demystified{% endblock %}
+{% block title %}{{ CITY_COUNCIL_NAME }}, demystified{% endblock %}
 
 {% block full_content %}
     <div class="container-fluid" id="section-photo">
@@ -38,10 +38,10 @@
 
                 <div class='row'>
                     <div class='col-sm-8'>
-                        <p>Chicago City Council consists of <a href='/council-members/' target="_blank">50 elected aldermen</a> and meets monthly to shape the city. The council works with <a href='/person/emanuel-rahm/'  target="_blank">Rahm Emanuel</a>, the Mayor, and <a href='/person/mendoza-susana-a/' target="_blank">Susana Mendoza</a>, the City Clerk.</p>
+                      <p>{{ CITY_COUNCIL_NAME }} consists of <a href='/council-members/' target="_blank">50 elected aldermen</a> and meets monthly to shape the city. The council works with <a href='/person/emanuel-rahm/'  target="_blank">Rahm Emanuel</a>, the Mayor, and <a href='/person/mendoza-susana-a/' target="_blank">Susana Mendoza</a>, the City Clerk.</p>
 
                         <p>
-                            <strong>Chicago Councilmatic</strong> tracks all things related to Chicago City Council: 
+                        <strong>{{ CITY_NAME }} Councilmatic</strong> tracks all things related to {{ CITY_COUNCIL_NAME }}: 
                             <ul>
                                 <li>
                                     the <a href='/search/' target="_blank">legislation</a> introduced and passed
@@ -86,7 +86,7 @@
             <div class='col-sm-10 col-sm-offset-1'>
                 <h2>
                     <span class="non-mobile-only">
-                        <i class="fa fa-fw fa-institution"></i>Engage Chicago City Council
+                      <i class="fa fa-fw fa-institution"></i>Engage {{ CITY_COUNCIL_NAME }}
                     </span>
                     <span class="mobile-only">
                         <i class="fa fa-institution"></i>
