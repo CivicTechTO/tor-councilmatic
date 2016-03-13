@@ -59,7 +59,7 @@ createuser tor_councilmatic
 Then, run migrations
 
 ```bash
-make python-migrate
+make django-migrate
 ```
 
 Create an admin user - set a username & password when prompted
@@ -73,7 +73,7 @@ python manage.py createsuperuser
 Run the loaddata management command. This may take a while, depending on volume.
 
 ```bash
-make python-loaddata
+make django-loaddata
 ```
 
 By default, the loaddata command is smart about what it looks at on the OCD API. If you already have bills loaded, it won't look at everything on the API - it'll look at the most recently updated bill in your database, see when that bill was last updated on the OCD API, & then look through everything on the API that was updated after that point. If you'd like to load things that are older than what you currently have loaded, you can run the loaddata management command with a `--delete` option, which removes everything from your database before loading.
