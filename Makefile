@@ -18,6 +18,7 @@ heroku-deploy: ## Deploy to Heroku via git-push
 	git push heroku master
 
 heroku-pg-push: ## Push the tor_councilmatic DB to Heroku
+	heroku pg:reset DATABASE
 	heroku pg:push tor_councilmatic DATABASE
 
 .PHONY: help
