@@ -11,7 +11,7 @@ class JurisdictionConfig(object):
     OCD_CITY_COUNCIL_ID = values.Value('ocd-organization/ef168607-9135-4177-ad8e-c1f7a4806c3a')
     CITY_COUNCIL_NAME = values.Value('Chicago City Council')
     OCD_JURISDICTION_ID = values.Value('ocd-jurisdiction/country:us/state:il/place:chicago/government')
-    LEGISLATIVE_SESSIONS = values.ListValue(['2007', '2011', '2015']) # the last one in this list should be the current legislative session
+    LEGISLATIVE_SESSIONS = values.ListValue(None) # the last one in this list should be the current legislative session
     CITY_NAME = values.Value('Chicago')
     CITY_NAME_SHORT = values.Value('Chicago')
 
@@ -25,14 +25,17 @@ class JurisdictionConfig(object):
             cls.CITY_NAME_SHORT = cls.CITY_NAME
 
 
-    # VOCAB SETTINGS FOR FRONT-END DISPLAY
-    CITY_VOCAB = {
-        'MUNICIPAL_DISTRICT': 'Ward',       # e.g. 'District'
-        'SOURCE': 'Chicago City Clerk',
-        'COUNCIL_MEMBER': 'Alderman',       # e.g. 'Council Member'
-        'COUNCIL_MEMBERS': 'Aldermen',      # e.g. 'Council Members'
-        'EVENTS': 'Meetings',               # label for the events listing, e.g. 'Events'
+    city_vocab = {
+        'MUNICIPAL_DISTRICT': 'District',
+        'SOURCE': 'City Clerk',
+        'COUNCIL_MEMBER': 'Council Member',
+        'COUNCIL_MEMBERS': 'Council Members',
+        'EVENTS': 'Meetings',
     }
+
+    # TODO: Keep track of this issue
+    # Ref: https://github.com/jazzband/django-configurations/issues/151
+    CITY_VOCAB = values.DictValue(city_vocab)
 
     APP_NAME = 'chicago'
 
@@ -69,7 +72,7 @@ class JurisdictionConfig(object):
     # member listing. the boundary set should be the relevant
     # slug from the ocd api's boundary service
     # available boundary sets here: http://ocd.datamade.us/boundary-sets/
-    BOUNDARY_SET = 'chicago-wards-2015'
+    BOUNDARY_SET = values.Value(None)
 
     # this is for configuring a map of council districts using data from the posts
     # set MAP_CONFIG = None to hide map
