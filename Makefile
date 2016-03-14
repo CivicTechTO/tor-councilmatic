@@ -7,6 +7,10 @@ pip-update: ## Update packages from requirements.unlocked.txt
 pip-lock: ## Lock packages into requirements.lock
 	pip freeze > requirements.lock
 
+django-db-reset: ## Reset the database
+	dropdb tor_councilmatic
+	createdb tor_councilmatic
+
 django-migrate: ## Run Django migrations
 	python manage.py migrate --no-initial-data
 
