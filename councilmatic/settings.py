@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 class Base(Configuration):
-    OCDAPI_BASE_URL = 'https://toronto-ocd-api.herokuapp.com'
+    OCDAPI_BASE_URL = values.Value('http://ocd.datamade.us')
 
     ALLOWED_HOSTS = [
         'localhost', '127.0.0.1',
