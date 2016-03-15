@@ -109,5 +109,3 @@ class Default(DeploymentConfig, JurisdictionConfig, Base):
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
     HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
-
-    STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
