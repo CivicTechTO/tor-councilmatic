@@ -59,6 +59,7 @@ target/
 
 # Collected Static Files
 static/**
+**/static/images/ocd-person/*.jpg
 
 # Heroku
 .env
