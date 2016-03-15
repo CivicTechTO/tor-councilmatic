@@ -56,12 +56,11 @@ class JurisdictionConfig(object):
     SITE_URL = values.URLValue(HEROKU_URL or 'https://chicago.councilmatic.org')
 
     SITE_META = {
-        'site_name' : 'Chicago Councilmatic',
-        'site_desc' : 'City Council, demystified. Keep tabs on Chicago legislation, aldermen, & meetings.',
-        'site_author' : 'DataMade',
-        'site_url' : SITE_URL,
-        'twitter_site': '@DataMadeCo',
-        'twitter_creator': '@DataMadeCo',
+        'site_name' : 'Toronto Councilmatic',
+        'site_desc' : 'City Council, demystified. Keep tabs on Toronto legislation, councillors, & meetings.',
+        'site_author' : 'Civic Tech Toronto',
+        'twitter_site': '@councilmatic',
+        'twitter_creator': '@CivicTechTO',
     }
 
     LEGISTAR_URL = 'https://chicago.legistar.com/Legislation.aspx'

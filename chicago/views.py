@@ -63,6 +63,7 @@ class ChicagoIndexView(IndexView):
 
         seo = {}
         seo.update(settings.SITE_META)
+        seo.update({'site_url': settings.SITE_URL})
         seo['image'] = '/static/images/city_hall.jpg'
 
         return {
