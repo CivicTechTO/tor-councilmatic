@@ -1,8 +1,9 @@
 dj-database-url
 django-configurations
 # Pending release
-# Ref: https://github.com/datamade/django-councilmatic/pull/40
--e git://github.com/civictechto/django-councilmatic.git@1febd9de5a77b7bba5255de0a88f7bff50fce48d#egg=django-councilmatic
+# @see https://github.com/datamade/django-councilmatic/pull/40
+# @see https://github.com/datamade/django-councilmatic/pull/48
+-e git://github.com/civictechto/django-councilmatic.git@8a9cf7dd2497fac2d7b297c75e8c226da2d479fb#egg=django-councilmatic
 gunicorn
 psycopg2
 whitenoise
