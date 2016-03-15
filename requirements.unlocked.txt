@@ -3,7 +3,7 @@ django-configurations
 # Pending release
 # @see https://github.com/datamade/django-councilmatic/pull/40
 # @see https://github.com/datamade/django-councilmatic/pull/48
--e git://github.com/civictechto/django-councilmatic.git@8a9cf7dd2497fac2d7b297c75e8c226da2d479fb#egg=django-councilmatic
+-e git://github.com/civictechto/django-councilmatic.git@option-to-auto-find-manual-headshots#egg=django-councilmatic
 gunicorn
 psycopg2
 whitenoise
