@@ -25,11 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 class Base(Configuration):
     OCDAPI_BASE_URL = values.Value('http://ocd.datamade.us')
 
-    ALLOWED_HOSTS = [
-        'localhost', '127.0.0.1',
-        '.datamade.us',
-        '.councilmatic.org'
-    ]
+    ALLOWED_HOSTS = values.ListValue(['*'])
 
 class Default(DeploymentConfig, JurisdictionConfig, Base):
 
