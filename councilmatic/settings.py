@@ -107,10 +107,6 @@ class Default(DeploymentConfig, JurisdictionConfig, Base):
 
     STATIC_URL = '/static/'
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_DIRS = (
-            os.path.join(BASE_DIR, 'static'),
-            )
-
 
     HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
