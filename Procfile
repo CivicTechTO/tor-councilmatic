@@ -1,1 +1,1 @@
-web: gunicorn councilmatic.wsgi --log-file -
+web: gunicorn councilmatic.wsgi --log-file - --log-level debug
