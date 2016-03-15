@@ -9,7 +9,7 @@ class DeploymentConfig(object):
 
     # SECURITY WARNING: don't run with debug turned on in production!
     # Set this to True while you are developing
-    DEBUG = True
+    DEBUG = values.BooleanValue(True)
 
     # Database
     # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
