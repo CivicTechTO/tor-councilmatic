@@ -43,6 +43,6 @@ class DeploymentConfig(object):
     # analytics tracking code
     ANALYTICS_TRACKING_CODE = ''
 
-    HEADSHOT_RELPATH = 'images/headshots'
+    HEADSHOT_RELPATH = 'images/manual-headshots'
 
     EXTRA_APPS = ()
