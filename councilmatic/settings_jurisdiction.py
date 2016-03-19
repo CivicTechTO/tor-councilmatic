@@ -232,8 +232,6 @@ class JurisdictionConfig(object):
         
     }
 
-    MANUAL_HEADSHOTS = True
-
     # notable positions that aren't district representatives, e.g. mayor & city clerk
     # keys should match person slugs
     EXTRA_TITLES = {

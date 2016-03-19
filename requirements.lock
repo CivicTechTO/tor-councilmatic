@@ -1,7 +1,7 @@
 dj-database-url==0.4.0
 Django==1.8.3
 django-configurations==1.0
--e git://github.com/civictechto/django-councilmatic.git@71e62dc4eb87419fdb579e591f123cf503f3c762#egg=django_councilmatic-master
+-e git://github.com/civictechto/django-councilmatic.git@8976523f0397b421a614bcade07cad51813fb1ff#egg=django_councilmatic-master
 django-haystack==2.4.0
 gunicorn==19.4.5
 psycopg2==2.6.1

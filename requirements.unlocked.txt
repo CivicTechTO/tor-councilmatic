@@ -1,9 +1,8 @@
 dj-database-url
 django-configurations
 # Pending release
-# @see https://github.com/datamade/django-councilmatic/pull/40
-# @see https://github.com/datamade/django-councilmatic/pull/48
--e git://github.com/civictechto/django-councilmatic.git@option-to-auto-find-manual-headshots#egg=django-councilmatic
+# @see https://github.com/datamade/django-councilmatic/pull/51
+-e git://github.com/civictechto/django-councilmatic.git@static-headshot-path#egg=django-councilmatic
 gunicorn
 psycopg2
 whitenoise
