@@ -125,7 +125,7 @@ class JurisdictionConfig(object):
 
     # this is the anme of the role of committee members,
     # as stored in legistar
-    COMMITTEE_MEMBER_TITLE = 'Member'
+    COMMITTEE_MEMBER_TITLE = 'member'
 
 
 

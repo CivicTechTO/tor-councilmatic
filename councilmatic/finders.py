@@ -14,28 +14,16 @@ from django.conf import settings
 
 logger = logging.getLogger(__name__)
 
-hash_func_map = {
-    'md5': hashlib.md5,
-    'sha1': hashlib.sha1,
-    'sha224': hashlib.sha224,
-    'sha256': hashlib.sha256,
-    'sha384': hashlib.sha384,
-    'sha512': hashlib.sha512,
-}
-
 
 class _ResourceInfo(object):
     hash_verified = False
 
-    def __init__(self, url, hash_func, expected_digest):
+    def __init__(self, url):
         self.url = url
-        self.hash_func = hash_func
-        self.expected_digest = expected_digest
 
 
 class PersonHeadshotFinder(BaseFinder):
     def __init__(self):
-        self.always_verify = getattr(settings, "REMOTE_FINDER_ALWAYS_VERIFY", False)
         self.cache_dir = getattr(settings, "REMOTE_FINDER_CACHE_DIR", None)
         if not self.cache_dir:
             raise ImproperlyConfigured("settings.REMOTE_FINDER_CACHE_DIR must point to a cache directory.")
@@ -50,24 +38,10 @@ class PersonHeadshotFinder(BaseFinder):
         resources = {}
         for resource in resources_setting:
             try:
-                path, url, cksm = resource
+                path, url = resource
             except ValueError:
-                raise ImproperlyConfigured("Each item in settings.REMOTE_FINDER_RESOURCES must be a tuple of three elements (path, url, cksm).")
-            try:
-                hash_type, expected_hexdigest = cksm.split(':')
-            except ValueError:
-                raise ImproperlyConfigured("RemoteFinder checksum `%s` is not in `hash_type:hexdigest` format." % cksm)
-            try:
-                hash_func = hash_func_map[hash_type]
-            except KeyError:
-                raise ImproperlyConfigured("RemoteFinder: hash type `%s` unknown" % hash_type)
-            try:
-                expected_digest = bytearray.fromhex(expected_hexdigest)
-            except ValueError:
-                raise ImproperlyConfigured("Cannot parse hex string in settings.REMOTE_FINDER_RESOURCES: `%s`" % expected_hexdigest)
-            if len(expected_digest) != hash_func().digest_size:
-                raise ImproperlyConfigured("settings.REMOTE_FINDER_RESOURCES: %s digest expected %d bytes but %d provided: `%s`" % (hash_type, hash_func().digest_size, len(expected_digest), expected_hexdigest))
-            resources[path] = _ResourceInfo(url, hash_func, expected_digest)
+                raise ImproperlyConfigured("Each item in settings.REMOTE_FINDER_RESOURCES must be a tuple of two elements (path, url).")
+            resources[path] = _ResourceInfo(url)
         self.resources = resources
 
     def find(self, path, all=False):
@@ -83,31 +57,13 @@ class PersonHeadshotFinder(BaseFinder):
             return match
 
     def fetch(self, path, resource_info):
-        if self.storage.exists(path):
-            # check to see if the hash has already been verified in the
-            # lifetime of this process
-            if resource_info.hash_verified and not self.always_verify:
-                return
+        # delete from storage and re-download the file
+        logger.info("Deleting %s from storage", path)
 
-            # verify the hash
-            f = self.storage.open(path)
-            try:
-                content = f.read()
-            finally:
-                f.close()
-            digest = resource_info.hash_func(content).digest()
-            if digest == resource_info.expected_digest:
-                resource_info.hash_verified = True
-                return
-
-            # hash verification failed, so delete it from storage and
-            # re-download the file
-            logger.info("Hash verification failed, so deleting %s from storage", path)
-
-            # The following line does /not/ raise an exception if the file is
-            # already deleted, which is desirable for us as it prevents an
-            # error in the case of a race condition.
-            self.storage.delete(path)
+        # The following line does /not/ raise an exception if the file is
+        # already deleted, which is desirable for us as it prevents an
+        # error in the case of a race condition.
+        self.storage.delete(path)
 
         # download the file
         logger.info("Downloading %s", resource_info.url)
@@ -117,16 +73,9 @@ class PersonHeadshotFinder(BaseFinder):
         finally:
             f.close()
 
-        # check its hash
-        digest = resource_info.hash_func(content).digest()
-        if digest != resource_info.expected_digest:
-            raise RuntimeError("Digest for %s does not match expected value given in settings.REMOTE_FINDER_RESOURCES", resource_info.url)
-
         # save it
         name = self.storage.save(path, ContentFile(content))
-        if name == path:
-            resource_info.hash_verified = True
-        else:
+        if name != path:
             logger.warning("Save failed: %r != %r", name, path)
 
     def list(self, ignore_patterns):
