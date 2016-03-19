@@ -64,11 +64,6 @@ class Default(DeploymentConfig, JurisdictionConfig, Base):
 
     REMOTE_FINDER_CACHE_DIR = os.path.join(BASE_DIR, '.cache')
 
-    REMOTE_FINDER_RESOURCES = [
-            ('jquery-2.0.2.min.js', 'https://code.jquery.com/jquery-2.0.2.min.js'),
-            ('images/headshots/abailao.jpg', 'http://www1.toronto.ca/city_of_toronto/city_clerks/councillors/files/images/abailao.jpg')
-            ]
-
     STATICFILES_FINDERS = (
         'django.contrib.staticfiles.finders.FileSystemFinder',
         'django.contrib.staticfiles.finders.AppDirectoriesFinder',
