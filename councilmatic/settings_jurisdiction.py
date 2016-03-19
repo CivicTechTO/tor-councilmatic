@@ -121,11 +121,11 @@ class JurisdictionConfig(object):
     # this is the name of the role of committee chairs, e.g. 'CHAIRPERSON' or 'Chair'
     # as stored in legistar
     # if this is set, committees will display chairs
-    COMMITTEE_CHAIR_TITLE = 'Chairman'
+    COMMITTEE_CHAIR_TITLE = values.Value('Chairman')
 
     # this is the anme of the role of committee members,
     # as stored in legistar
-    COMMITTEE_MEMBER_TITLE = 'Member'
+    COMMITTEE_MEMBER_TITLE = values.Value('Member')
 
 
 
