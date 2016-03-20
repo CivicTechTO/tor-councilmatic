@@ -75,12 +75,14 @@ class JurisdictionConfig(object):
 
     # this is for configuring a map of council districts using data from the posts
     # set MAP_CONFIG = None to hide map
-    MAP_CONFIG = {
-        'center': [41.8369, -87.6847],
+    map_config = {
+        'center': [43.7245,-79.3882],
         'zoom': 10,
         'color': "#54afe8",
         'highlight_color': "#C00000",
     }
+
+    MAP_CONFIG = values.DictValue(map_config)
 
 
     FOOTER_CREDITS = [
