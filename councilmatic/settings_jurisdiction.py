@@ -33,6 +33,8 @@ class JurisdictionConfig(object):
         'EVENTS': 'Meetings',
     }
 
+    BOUNDARY_API_BASE_URL = 'http://represent.opennorth.ca'
+
     # TODO: Keep track of this issue
     # Ref: https://github.com/jazzband/django-configurations/issues/151
     CITY_VOCAB = values.DictValue(city_vocab)
