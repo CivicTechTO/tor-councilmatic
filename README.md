@@ -45,6 +45,13 @@ cd ../tor-councilmatic
 
 **Create your settings file**
 
+We're attemptin to use the principles of the [12-Factor
+App](http://12factor.net/), so a good deal of configuration happens via
+environment variables, which are set in a `.env` file during local
+development. You can load some sensible defaults with this:
+
+    make django-setup
+
 - if you're setting up councilmatic for local development, use a dummy cache by setting `CACHES['default']['BACKEND']` to `'django.core.cache.backends.dummy.DummyCache'`. if you're deploying, leave it as is
 
 **Setup your database**

@@ -7,6 +7,9 @@ pip-update: ## Update packages from requirements.unlocked.txt
 pip-lock: ## Lock packages into requirements.lock
 	pip freeze > requirements.lock
 
+django-setup: ## Run initial local setup tasks
+	cp --backup=numbered example.env .env
+
 django-db-reset: ## Reset the database
 	dropdb tor_councilmatic
 	createdb tor_councilmatic
