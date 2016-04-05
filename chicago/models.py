@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.db import models
-from councilmatic_core.models import Bill, Event
+from councilmatic_core.models import Bill, Event, Person
 from datetime import datetime
 import pytz
 from .helpers import topic_classifier
@@ -133,3 +133,9 @@ class ChicagoEvent(Event):
                   .filter(start_time__lt=datetime.now()).filter(description='').order_by('-start_time').first()
         else:
             return None
+
+class TorontoPerson(Person):
+
+    @property
+    def headshot_url(self):
+        return '/static/images/manual-headshots/' + self.slug + '.jpg'

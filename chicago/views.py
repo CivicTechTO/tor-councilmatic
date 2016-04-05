@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from datetime import date, timedelta
-from chicago.models import ChicagoBill, ChicagoEvent
+from chicago.models import ChicagoBill, ChicagoEvent, TorontoPerson
 from councilmatic_core.models import Action
 from councilmatic_core.views import *
 from django.conf import settings
@@ -10,6 +10,7 @@ class ChicagoIndexView(IndexView):
     template_name = 'chicago/index.html'
     bill_model = ChicagoBill
     event_model = ChicagoEvent
+    person_model = TorontoPerson
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
