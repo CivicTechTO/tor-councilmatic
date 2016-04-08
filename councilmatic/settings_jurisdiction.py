@@ -122,7 +122,7 @@ class JurisdictionConfig(object):
     # as stored in legistar
     CITY_COUNCIL_MEETING_NAME = 'City Council'
 
-    COMMITTEE_CHAIR_TITLES = ['Chair', 'Vice Chair']
+    COMMITTEE_CHAIR_TITLES = values.ListValue(['Chair', 'Vice Chair'])
 
     # this is for convenience, & used to populate a table
     # describing legislation types on the about page template
