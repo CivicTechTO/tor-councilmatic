@@ -136,6 +136,9 @@ class ChicagoEvent(Event):
 
 class TorontoPerson(Person):
 
+    class Meta:
+        proxy = True
+
     @property
     def headshot_url(self):
         return '/static/images/manual-headshots/' + self.slug + '.jpg'
