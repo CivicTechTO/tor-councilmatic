@@ -122,17 +122,7 @@ class JurisdictionConfig(object):
     # as stored in legistar
     CITY_COUNCIL_MEETING_NAME = 'City Council'
 
-    # this is the name of the role of committee chairs, e.g. 'CHAIRPERSON' or 'Chair'
-    # as stored in legistar
-    # if this is set, committees will display chairs
-    COMMITTEE_CHAIR_TITLE = values.Value('Chairman')
-
-    # this is the anme of the role of committee members,
-    # as stored in legistar
-    COMMITTEE_MEMBER_TITLE = values.Value('Member')
-
-
-
+    COMMITTEE_CHAIR_TITLES = ['Chair', 'Vice Chair']
 
     # this is for convenience, & used to populate a table
     # describing legislation types on the about page template
