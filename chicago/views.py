@@ -134,3 +134,6 @@ class ChicagoCouncilMembersView(CouncilMembersView):
         seo['title'] = 'Wards & Aldermen - Chicago Councilmatic'
 
         return seo
+
+class TorontoPersonDetailView(PersonDetailView):
+    model = TorontoPerson
