@@ -21,7 +21,7 @@ from councilmatic_core.views import CouncilmaticSearchForm, CouncilmaticFacetedS
 from chicago.views import *
 
 sqs = SearchQuerySet().facet('bill_type')\
-                      .facet('sponsorships', sort='index')\
+                      .facet('sponsorships')\
                       .facet('controlling_body')\
                       .facet('inferred_status')\
                       .facet('topics')\
