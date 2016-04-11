@@ -1,4 +1,6 @@
 dj-database-url
+dj-search-url
+django-cache-url
 django-configurations
 # Pending release
 # @see https://github.com/datamade/django-councilmatic/pull/44

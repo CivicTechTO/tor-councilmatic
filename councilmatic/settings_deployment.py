@@ -11,29 +11,16 @@ class DeploymentConfig(object):
     # Set this to True while you are developing
     DEBUG = values.BooleanValue(True)
 
-    # Database
-    # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
+    # See: https://django-configurations.readthedocs.org/en/stable/values/#configurations.values.DatabaseURLValue
     DATABASES = values.DatabaseURLValue('postgres://tor_councilmatic@localhost/tor_councilmatic')
 
-    HAYSTACK_CONNECTIONS = {
-        'default': {
-            'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-            #'URL': 'http://127.0.0.1:8983/solr'
-            # ...or for multicore...
-            'URL': 'http://127.0.0.1:9200/',
-            'INDEX_NAME': 'toronto',
-        },
-    }
+    # See: https://django-configurations.readthedocs.org/en/stable/values/#configurations.values.SearchURLValue
+    # See: https://github.com/dstufft/dj-search-url
+    HAYSTACK_CONNECTIONS = values.SearchURLValue('elasticsearch://127.0.0.1:9200/toronto')
 
-    # Remember to run python manage.py createcachetable so this will work! 
-    # developers, set your BACKEND to 'django.core.cache.backends.dummy.DummyCache'
-    CACHES = {
-        'default': {
-            'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-            'LOCATION': 'councilmatic_cache',
-        }
-    }
+    # See: https://django-configurations.readthedocs.org/en/stable/values/#configurations.values.CacheURLValue
+    # See: https://github.com/ghickman/django-cache-url
+    CACHES = values.CacheURLValue('dummy://')
 
     # Set this to flush the cache at /flush-cache/{FLUSH_KEY}
     FLUSH_KEY = 'super secret junk'
