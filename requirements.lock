@@ -3,7 +3,7 @@ dj-search-url==0.1
 Django==1.8.3
 django-cache-url==1.0.0
 django-configurations==1.0
--e git://github.com/civictechto/django-councilmatic@bc49a3b37d9745156d7a6fd9f436650bf8dc58e6#egg=django_councilmatic-origin_HEAD
+-e git://github.com/civictechto/django-councilmatic@9fc3e4e087107bc2dda1b10ffd8c4e5b88320337#egg=django_councilmatic-origin_HEAD
 django-haystack==2.4.1
 elasticsearch==1.9.0
 gunicorn==19.4.5
