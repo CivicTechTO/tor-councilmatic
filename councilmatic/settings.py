@@ -67,7 +67,7 @@ class Default(DeploymentConfig, JurisdictionConfig, Base):
     TEMPLATES = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
-            'DIRS': [],
+            'DIRS': ['chicago/partials'],
             'APP_DIRS': True,
             'OPTIONS': {
                 'context_processors': [

@@ -38,6 +38,7 @@ urlpatterns = [
     url(r'^legislation/(?P<slug>.*)/$', ChicagoBillDetailView.as_view(), name='bill_detail'),
     url(r'^person/(?P<slug>.*)/$', TorontoPersonDetailView.as_view(), name='person'),
     url(r'^council-members/$', ChicagoCouncilMembersView.as_view(), name='council_members'),
+    url(r'^events/', TorontoEventsView.as_view(), name='events'),
     url(r'', include('councilmatic_core.urls')),
     url(r'^members/$', RedirectView.as_view(url='/council-members/', permanent=True), name='council_members'),
 ]
