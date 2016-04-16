@@ -16,7 +16,7 @@ class DeploymentConfig(object):
 
     # See: https://django-configurations.readthedocs.org/en/stable/values/#configurations.values.SearchURLValue
     # See: https://github.com/dstufft/dj-search-url
-    HAYSTACK_CONNECTIONS = values.SearchURLValue('elasticsearch://127.0.0.1:9200/toronto')
+    HAYSTACK_CONNECTIONS = values.SearchURLValue('elasticsearch://127.0.0.1:9200/toronto', environ_name='BONSAI_URL')
 
     # See: https://django-configurations.readthedocs.org/en/stable/values/#configurations.values.CacheURLValue
     # See: https://github.com/ghickman/django-cache-url
