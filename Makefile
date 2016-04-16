@@ -27,6 +27,7 @@ heroku-deploy: ## Deploy to Heroku via git-push
 heroku-pg-push: ## Push the tor_councilmatic DB to Heroku
 	heroku pg:reset DATABASE
 	heroku pg:push tor_councilmatic DATABASE
+	heroku config:set `heroku config:get DATABASE_URL --shell` --app scrapers-to
 
 .PHONY: help
 
