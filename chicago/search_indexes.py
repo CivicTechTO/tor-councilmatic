@@ -31,3 +31,11 @@ class ChicagoBillIndex(BillIndex, indexes.Indexable):
 
     def prepare_topics(self, obj):
         return obj.topics
+
+    # TODO: Revert this workaround
+    def prepare_actions(self, obj):
+        return []
+
+    # TODO: Revert this workaround
+    def prepare_sponsorships(self, obj):
+        return []
