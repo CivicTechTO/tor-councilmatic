@@ -1,19 +1,19 @@
 # These are all the settings that are specific to a jurisdiction
 
 import os
-from configurations import values
+from configurations.values import Value, ListValue, DictValue, URLValue
 
 class JurisdictionConfig(object):
     ###############################
     # These settings are required #
     ###############################
 
-    OCD_CITY_COUNCIL_ID = values.Value('ocd-organization/ef168607-9135-4177-ad8e-c1f7a4806c3a')
-    CITY_COUNCIL_NAME = values.Value('Chicago City Council')
-    OCD_JURISDICTION_ID = values.Value('ocd-jurisdiction/country:us/state:il/place:chicago/government')
-    LEGISLATIVE_SESSIONS = values.ListValue(None) # the last one in this list should be the current legislative session
-    CITY_NAME = values.Value('Chicago')
-    CITY_NAME_SHORT = values.Value('Chicago')
+    OCD_CITY_COUNCIL_ID = Value('ocd-organization/ef168607-9135-4177-ad8e-c1f7a4806c3a')
+    CITY_COUNCIL_NAME = Value('Chicago City Council')
+    OCD_JURISDICTION_ID = Value('ocd-jurisdiction/country:us/state:il/place:chicago/government')
+    LEGISLATIVE_SESSIONS = ListValue(None) # the last one in this list should be the current legislative session
+    CITY_NAME = Value('Chicago')
+    CITY_NAME_SHORT = Value('Chicago')
 
     # TODO: Yuck.
     # See: https://github.com/jazzband/django-configurations/issues/149
@@ -37,7 +37,7 @@ class JurisdictionConfig(object):
 
     # TODO: Keep track of this issue
     # Ref: https://github.com/jazzband/django-configurations/issues/151
-    CITY_VOCAB = values.DictValue(city_vocab)
+    CITY_VOCAB = DictValue(city_vocab)
 
     APP_NAME = 'chicago'
 
@@ -55,7 +55,7 @@ class JurisdictionConfig(object):
     else :
         HEROKU_URL = None
 
-    SITE_URL = values.URLValue(HEROKU_URL or 'https://chicago.councilmatic.org')
+    SITE_URL = URLValue(HEROKU_URL or 'https://chicago.councilmatic.org')
 
     SITE_META = {
         'site_name' : 'Toronto Councilmatic',
@@ -73,7 +73,7 @@ class JurisdictionConfig(object):
     # member listing. the boundary set should be the relevant
     # slug from the ocd api's boundary service
     # available boundary sets here: http://ocd.datamade.us/boundary-sets/
-    BOUNDARY_SET = values.Value(None)
+    BOUNDARY_SET = Value(None)
 
     # this is for configuring a map of council districts using data from the posts
     # set MAP_CONFIG = None to hide map
@@ -84,7 +84,7 @@ class JurisdictionConfig(object):
         'highlight_color': "#C00000",
     }
 
-    MAP_CONFIG = values.DictValue(map_config)
+    MAP_CONFIG = DictValue(map_config)
 
 
     FOOTER_CREDITS = [
@@ -122,7 +122,7 @@ class JurisdictionConfig(object):
     # as stored in legistar
     CITY_COUNCIL_MEETING_NAME = 'City Council'
 
-    COMMITTEE_CHAIR_TITLES = values.ListValue(['Chair', 'Vice Chair'])
+    COMMITTEE_CHAIR_TITLES = ListValue(['Chair', 'Vice Chair'])
 
     # this is for convenience, & used to populate a table
     # describing legislation types on the about page template

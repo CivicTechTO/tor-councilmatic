@@ -14,7 +14,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 from .settings_deployment import DeploymentConfig
 from .settings_jurisdiction import JurisdictionConfig
-from configurations import Configuration, values
+from configurations import Configuration
+from configurations.values import Value, ListValue
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -23,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 class Base(Configuration):
-    OCDAPI_BASE_URL = values.Value('http://ocd.datamade.us')
+    OCDAPI_BASE_URL = Value('http://ocd.datamade.us')
 
-    ALLOWED_HOSTS = values.ListValue(['*'])
+    ALLOWED_HOSTS = ListValue(['*'])
 
 class Default(DeploymentConfig, JurisdictionConfig, Base):
 
@@ -89,7 +90,7 @@ class Default(DeploymentConfig, JurisdictionConfig, Base):
 
     LANGUAGE_CODE = 'en-us'
 
-    TIME_ZONE = values.Value('America/Chicago')
+    TIME_ZONE = Value('America/Chicago')
 
     USE_I18N = True
 
