@@ -16,7 +16,7 @@ class ChicagoBill(Bill):
 
     @property
     def friendly_name(self):
-        return '.'.join(self.identifier.split('.')[-2:])
+        return self.identifier
 
     @property
     def date_passed(self):
