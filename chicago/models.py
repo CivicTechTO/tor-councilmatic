@@ -121,6 +121,11 @@ class ChicagoBill(Bill):
         else:
             return None
 
+    @property
+    def listing_description(self):
+        return self.description
+
+
 class ChicagoEvent(Event):
 
     class Meta:
