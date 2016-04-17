@@ -26,7 +26,7 @@
                         </div>
                     </div>
                 </form>
-                
+
                 <div class="divider"></div>
             </div>
         </div>
@@ -38,10 +38,10 @@
 
                 <div class='row'>
                     <div class='col-sm-8'>
-                      <p>{{ CITY_COUNCIL_NAME }} consists of <a href='/council-members/' target="_blank">50 elected aldermen</a> and meets monthly to shape the city. The council works with <a href='/person/emanuel-rahm/'  target="_blank">Rahm Emanuel</a>, the Mayor, and <a href='/person/mendoza-susana-a/' target="_blank">Susana Mendoza</a>, the City Clerk.</p>
+                      <p>{{ CITY_COUNCIL_NAME }} consists of <a href='/council-members/' target="_blank">44 elected councillors</a> and meets monthly to shape the city. The council works with <a href='/person/john-tory/'  target="_blank">John Tory</a>, the Mayor, and <a href='http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=07b700ad867a0410VgnVCM10000071d60f89RCRD&vgnextchannel=a7b78b206f2ef310VgnVCM10000071d60f89RCRD' target="_blank">Ulli S. Watkiss</a>, the City Clerk.</p>
 
                         <p>
-                        <strong>{{ CITY_NAME }} Councilmatic</strong> tracks all things related to {{ CITY_COUNCIL_NAME }}: 
+                        <strong>{{ CITY_NAME }} Councilmatic</strong> tracks all things related to {{ CITY_COUNCIL_NAME }}:
                             <ul>
                                 <li>
                                     the <a href='/search/' target="_blank">legislation</a> introduced and passed
@@ -50,7 +50,7 @@
                                     its various <a href='/committees/' target="_blank">committees</a> and the <a href='/events/'  target="_blank">meetings</a> they hold
                                 </li>
                                 <li>
-                                    the <a href='/council-members/' target="_blank">aldermen</a> themselves
+                                    the <a href='/council-members/' target="_blank">councillors</a> themselves
                                 </li>
                             </ul>
                         </p>
@@ -108,11 +108,11 @@
                     </div>
                     <div class='col-sm-6'>
                         <h4>Local issues</h4>
-                        <p>At the local level, matters like <a href='/search/?q=&selected_facets=topics_exact:Land Use' target="_blank">land use</a>, <a href='/search/?q=&selected_facets=topics_exact:Sign permits' target="_blank">signs</a>, <a href='/search/?q=&selected_facets=topics_exact:Parking' target="_blank">street parking</a>, <a href='/search/?q=&selected_facets=topics_exact:Business Permits and Privileges' target="_blank">business permits</a>, and other <a href='/search/?q=&selected_facets=topics_exact:Residents' target="_blank">residents issues</a> require the local Alderman's support.</p>
+                        <p>At the local level, matters like <a href='/search/?q=&selected_facets=topics_exact:Land Use' target="_blank">land use</a>, <a href='/search/?q=&selected_facets=topics_exact:Sign permits' target="_blank">signs</a>, <a href='/search/?q=&selected_facets=topics_exact:Parking' target="_blank">street parking</a>, <a href='/search/?q=&selected_facets=topics_exact:Business Permits and Privileges' target="_blank">business permits</a>, and other <a href='/search/?q=&selected_facets=topics_exact:Residents' target="_blank">residents issues</a> require the local Councillor's support.</p>
 
                         <p>
                             <a class='btn btn-primary' href='/council-members/'>
-                                Find your alderman <i class="fa fa-fw fa-chevron-right"></i>
+                                Find your councillor <i class="fa fa-fw fa-chevron-right"></i>
                             </a>
                         </p>
                         <br/>
@@ -163,9 +163,9 @@
                         </h4>
                         {% for event in upcoming_committee_meetings %}
                             <p class="no-pad-bottom small">
-                                {{event.start_time | date:"D"}} 
-                                {{event.start_time | date:"m/d"}} - 
-                                
+                                {{event.start_time | date:"D"}}
+                                {{event.start_time | date:"m/d"}} -
+
                                 {{ event.link_html | safe }}
 
                             </p>
@@ -191,7 +191,7 @@
                 </h2>
 
                 <p class="big">
-                    At the <a href="{{last_council_meeting.event_page_url}}/" target="_blank"><strong>latest City Council meeting</strong></a> on {{last_council_meeting.start_time | date:"M jS"}}, council members took action on <strong>{{meeting_activity.bills | length}}</strong> pieces of legislation, including <strong>{{meeting_activity.bills_nonroutine | length}}</strong> that are 
+                    At the <a href="{{last_council_meeting.event_page_url}}/" target="_blank"><strong>latest City Council meeting</strong></a> on {{last_council_meeting.start_time | date:"M jS"}}, council members took action on <strong>{{meeting_activity.bills | length}}</strong> pieces of legislation, including <strong>{{meeting_activity.bills_nonroutine | length}}</strong> that are
                     <a href="/search/?q=&selected_facets=topics_exact:Non-Routine" target="_blank">non-routine</a>.
                 </p>
 
@@ -289,7 +289,7 @@
                 </h2>
                 <p>
                     After {{last_council_meeting.start_time | date:"M jS"}}, City Council introduced
-                    <strong>{{recent_activity.new | length}}</strong> new pieces of legislation, including <strong>{{recent_activity.new_nonroutine | length}}</strong> that are 
+                    <strong>{{recent_activity.new | length}}</strong> new pieces of legislation, including <strong>{{recent_activity.new_nonroutine | length}}</strong> that are
                     <a href="/search/?q=&selected_facets=topics_exact:Non-Routine" target="_blank">non-routine</a>.
                 </p>
             </div>
