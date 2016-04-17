@@ -3,6 +3,7 @@ from haystack import indexes
 from chicago.models import ChicagoBill
 from datetime import datetime
 from django.conf import settings
+from django.forms import model_to_dict
 import pytz
 
 app_timezone = pytz.timezone(settings.TIME_ZONE)
@@ -34,8 +35,8 @@ class ChicagoBillIndex(BillIndex, indexes.Indexable):
 
     # TODO: Revert this workaround
     def prepare_actions(self, obj):
-        return []
+        return [action.description for action in obj.actions.all()]
 
-    # TODO: Revert this workaround
     def prepare_sponsorships(self, obj):
-        return []
+        return [sponsorship.person.name for sponsorship in obj.sponsorships.all()]
+
