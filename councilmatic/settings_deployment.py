@@ -29,7 +29,7 @@ class DeploymentConfig(object):
     DISQUS_SHORTNAME = None
 
     # analytics tracking code
-    ANALYTICS_TRACKING_CODE = ''
+    ANALYTICS_TRACKING_CODE = Value('')
 
     HEADSHOT_PATH = os.path.join(os.path.dirname(__file__), '..'
                                  '/chicago/static/images/')
