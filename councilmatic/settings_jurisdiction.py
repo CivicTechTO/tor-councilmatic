@@ -89,6 +89,11 @@ class JurisdictionConfig(object):
 
     FOOTER_CREDITS = [
         {
+            'name':     'Civic Tech Toronto',
+            'url':      'http://civictech.ca/',
+            'image':    'civictechto-logo.png',
+        },
+        {
             'name':     'DataMade',
             'url':      'http://datamade.us/',
             'image':    'datamade-logo.png',
