@@ -1,7 +1,7 @@
 # These are all the settings that are specific to a deployment
 
 import os
-from configurations.values import BooleanValue, DatabaseURLValue, SearchURLValue, CacheURLValue
+from configurations.values import BooleanValue, DatabaseURLValue, SearchURLValue, CacheURLValue, Value
 
 class DeploymentConfig(object):
     # SECURITY WARNING: keep the secret key used in production secret!
