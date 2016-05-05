@@ -1,1 +1,1 @@
-web: gunicorn councilmatic.wsgi --log-file -
+web: newrelic-admin run-program gunicorn councilmatic.wsgi --log-file -

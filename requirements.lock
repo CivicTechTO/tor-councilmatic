@@ -7,6 +7,7 @@ django-configurations==1.0
 django-haystack==2.4.1
 elasticsearch==1.9.0
 gunicorn==19.4.5
+newrelic==2.64.0.48
 psycopg2==2.6.1
 pysolr==3.3.2
 python-dateutil==2.4.2
