@@ -14,7 +14,7 @@ class ChicagoIndexView(IndexView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        
+
         upcoming_meetings = list(self.event_model.upcoming_committee_meetings())
 
         date_cutoff = self.event_model.most_recent_past_city_council_meeting().start_time
@@ -26,7 +26,7 @@ class ChicagoIndexView(IndexView):
         meeting_activity['bills'] = meeting_bills
         meeting_activity['bills_routine'] = [b for b in meeting_bills if 'Routine' in b.topics]
         meeting_activity['bills_nonroutine'] = [b for b in meeting_bills if 'Non-Routine' in b.topics]
-        
+
 
 
 
@@ -37,7 +37,7 @@ class ChicagoIndexView(IndexView):
         recent_activity['new'] = new_bills
         recent_activity['new_routine'] = [b for b in new_bills if 'Routine' in b.topics]
         recent_activity['new_nonroutine'] = [b for b in new_bills if 'Non-Routine' in b.topics]
-        
+
         updated_bills = ChicagoBill.updated_bills_since(date_cutoff)
         recent_activity['updated_routine'] = [b for b in updated_bills if 'Routine' in b.topics]
         recent_activity['updated_nonroutine'] = [b for b in updated_bills if 'Non-Routine' in b.topics]
@@ -129,9 +129,9 @@ class ChicagoCouncilMembersView(CouncilMembersView):
     def get_seo_blob(self):
         seo = {}
         seo.update(settings.SITE_META)
-        seo['site_desc'] = "Look up your local Alderman, and see what they're doing in your ward & your city"
-        seo['image'] = '/static/images/chicago_map.jpg'
-        seo['title'] = 'Wards & Aldermen - Chicago Councilmatic'
+        seo['site_desc'] = "Look up your local Councillor, and see what they're doing in your ward & your city"
+        seo['image'] = '/static/images/toronto_map.jpg'
+        seo['title'] = 'Wards & Councillors - Toronto Councilmatic'
 
         return seo
 

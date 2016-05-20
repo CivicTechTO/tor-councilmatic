@@ -126,7 +126,7 @@ a {
         url('../images/city_hall.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: center bottom;
     height: 300px;
 }
 #section-photo .h3, #section-photo h1{
@@ -208,5 +208,5 @@ ul.plain-list{
         top: 20px;
     }
 
-    
+
 }
