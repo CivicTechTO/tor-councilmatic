@@ -10,11 +10,9 @@ pip-lock: ## Lock packages into requirements.lock
 django-setup: ## Run initial local setup tasks
 	cp --backup=numbered example.env .env
 
-django-db-reset: ## Reset the database
+django-db-reset: ## Reset the database & run migrations
 	dropdb tor_councilmatic
 	createdb tor_councilmatic
-
-django-migrate: ## Run Django migrations
 	python manage.py migrate --no-initial-data
 
 django-loaddata: ## Load objects updated within the past 2 weeks
