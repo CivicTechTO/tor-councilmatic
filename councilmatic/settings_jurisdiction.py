@@ -8,12 +8,12 @@ class JurisdictionConfig(object):
     # These settings are required #
     ###############################
 
-    OCD_CITY_COUNCIL_ID = Value('ocd-organization/ef168607-9135-4177-ad8e-c1f7a4806c3a')
-    CITY_COUNCIL_NAME = Value('Chicago City Council')
+    OCD_CITY_COUNCIL_NAME = Value('Anytown City Council')
+    CITY_COUNCIL_NAME = Value('Anytown City Council')
     OCD_JURISDICTION_ID = Value('ocd-jurisdiction/country:us/state:il/place:chicago/government')
     LEGISLATIVE_SESSIONS = ListValue(None) # the last one in this list should be the current legislative session
-    CITY_NAME = Value('Chicago')
-    CITY_NAME_SHORT = Value('Chicago')
+    CITY_NAME = Value('Anytown City')
+    CITY_NAME_SHORT = Value('Anytown')
 
     # TODO: Yuck.
     # See: https://github.com/jazzband/django-configurations/issues/149
@@ -68,7 +68,7 @@ class JurisdictionConfig(object):
     LEGISTAR_URL = 'https://chicago.legistar.com/Legislation.aspx'
 
 
-    # this is for the boundaries of municipal districts, to add 
+    # this is for the boundaries of municipal districts, to add
     # shapes to posts & ultimately display a map with the council
     # member listing. the boundary set should be the relevant
     # slug from the ocd api's boundary service
