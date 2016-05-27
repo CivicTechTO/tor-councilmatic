@@ -1,11 +1,14 @@
+PIP ?= pip
+PYTHON ?= python
+
 pip-install: ## Install pinned packages from requirements.lock
-	pip install -r requirements.lock
+	${PIP} install -r requirements.lock
 
 pip-update: ## Update packages from requirements.unlocked.txt
-	pip install --upgrade -r requirements.unlocked.txt
+	${PIP} install --upgrade -r requirements.unlocked.txt
 
 pip-lock: ## Lock packages into requirements.lock
-	pip freeze > requirements.lock
+	${PIP} freeze > requirements.lock
 
 django-setup: ## Run initial local setup tasks
 	cp --backup=numbered example.env .env
@@ -13,11 +16,11 @@ django-setup: ## Run initial local setup tasks
 django-db-reset: ## Reset the database & run migrations
 	dropdb tor_councilmatic
 	createdb tor_councilmatic
-	python manage.py migrate --no-initial-data
+	${PYTHON} manage.py migrate --no-initial-data
 
 django-loaddata: ## Load objects updated within the past 2 weeks
 	$(eval MONTH_AGO := $(shell date --date='2 weeks ago' '+%F'))
-	python manage.py loaddata --update_since $(MONTH_AGO)
+	${PYTHON} manage.py loaddata --update_since $(MONTH_AGO)
 
 heroku-deploy: ## Deploy to Heroku via git-push
 	git push heroku master

@@ -63,3 +63,6 @@ static/**
 
 # Heroku
 .env
+
+.vagrant/
+src/
