@@ -5,10 +5,10 @@ $post_up_message = "** Your Vagrant box is ready to use! \o/ **
 Log in (with 'vagrant ssh') and follow the instructions."
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "hashicorp/precise64"
+  config.vm.box = "ubuntu/trusty64"
 
   # Enable NFS access to the disk
-  config.vm.synced_folder "", "/vagrant", nfs: true
+  config.vm.synced_folder ".", "/vagrant", nfs: true
 
   # NFS requires a host-only network
   config.vm.network :private_network, ip: "10.11.12.13"
@@ -26,6 +26,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.ssh.forward_agent = true
 
   config.vm.provider :virtualbox do |v|
-    v.memory = 1024
+    v.memory = 512
   end
 end

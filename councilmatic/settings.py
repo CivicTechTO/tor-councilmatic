@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 class Base(Configuration):
-    OCDAPI_BASE_URL = Value('http://ocd.datamade.us')
+    OCDAPI_BASE_URL = Value('https://toronto-ocd-api.herokuapp.com')
 
     ALLOWED_HOSTS = ListValue(['*'])
 
@@ -90,7 +90,7 @@ class Default(DeploymentConfig, JurisdictionConfig, Base):
 
     LANGUAGE_CODE = 'en-us'
 
-    TIME_ZONE = Value('America/Chicago')
+    TIME_ZONE = Value('America/Toronto')
 
     USE_I18N = True
 

@@ -8,12 +8,12 @@ class JurisdictionConfig(object):
     # These settings are required #
     ###############################
 
-    OCD_CITY_COUNCIL_NAME = Value('Anytown City Council')
-    CITY_COUNCIL_NAME = Value('Anytown City Council')
-    OCD_JURISDICTION_ID = Value('ocd-jurisdiction/country:us/state:il/place:chicago/government')
+    OCD_CITY_COUNCIL_NAME = Value('Toronto City Council')
+    CITY_COUNCIL_NAME = Value('Toronto City Council')
+    OCD_JURISDICTION_ID = Value('ocd-jurisdiction/country:ca/csd:3520005/legislature')
     LEGISLATIVE_SESSIONS = ListValue(None) # the last one in this list should be the current legislative session
-    CITY_NAME = Value('Anytown City')
-    CITY_NAME_SHORT = Value('Anytown')
+    CITY_NAME = Value('Toronto')
+    CITY_NAME_SHORT = Value(None)
 
     # TODO: Yuck.
     # See: https://github.com/jazzband/django-configurations/issues/149
@@ -26,14 +26,14 @@ class JurisdictionConfig(object):
 
 
     city_vocab = {
-        'MUNICIPAL_DISTRICT': 'District',
-        'SOURCE': 'City Clerk',
-        'COUNCIL_MEMBER': 'Council Member',
-        'COUNCIL_MEMBERS': 'Council Members',
+        'MUNICIPAL_DISTRICT': 'Ward',
+        'SOURCE': 'City of Toronto',
+        'COUNCIL_MEMBER': 'Councillor',
+        'COUNCIL_MEMBERS': 'Councillors',
         'EVENTS': 'Meetings',
     }
 
-    BOUNDARY_API_BASE_URL = 'http://represent.opennorth.ca'
+    BOUNDARY_API_BASE_URL = Value('http://represent.opennorth.ca')
 
     # TODO: Keep track of this issue
     # Ref: https://github.com/jazzband/django-configurations/issues/151
@@ -73,7 +73,7 @@ class JurisdictionConfig(object):
     # member listing. the boundary set should be the relevant
     # slug from the ocd api's boundary service
     # available boundary sets here: http://ocd.datamade.us/boundary-sets/
-    BOUNDARY_SET = Value(None)
+    BOUNDARY_SET = Value('toronto-wards')
 
     # this is for configuring a map of council districts using data from the posts
     # set MAP_CONFIG = None to hide map
