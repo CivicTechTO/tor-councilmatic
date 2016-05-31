@@ -12,7 +12,7 @@ class DeploymentConfig(object):
     DEBUG = BooleanValue(True)
 
     # See: https://django-configurations.readthedocs.org/en/stable/values/#configurations.values.DatabaseURLValue
-    DATABASES = DatabaseURLValue('postgres://tor_councilmatic@localhost/tor_councilmatic')
+    DATABASES = DatabaseURLValue('sqlite://tor_councilmatic.db')
 
     # See: https://django-configurations.readthedocs.org/en/stable/values/#configurations.values.SearchURLValue
     # See: https://github.com/dstufft/dj-search-url
