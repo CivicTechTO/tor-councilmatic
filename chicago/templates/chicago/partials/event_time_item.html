@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row status-{{event.status}}">
 	<div class="col-xs-3 no-pad-right">
 		<p class="small">
 			<span class="non-mobile-only">
@@ -11,9 +11,9 @@
 	</div>
 	<div class="col-xs-9">
 		<p>
-      {% if event.status == 'cancelled' %}<strike>{% endif %}
+      {% if event.status == 'cancelled' %}<del>{% endif %}
       <a href="{{event.event_page_url}}/">{{event.name}}</a>
-      {% if event.status == 'cancelled' %}</strike>{% endif %}
+      {% if event.status == 'cancelled' %}</del>{% endif %}
       {% if event.clean_agenda_items %}
       <i class="fa fa-fw fa-file-text-o" title="Agenda Published" style="cursor:help; color:#C00000"></i>
       {% endif %}

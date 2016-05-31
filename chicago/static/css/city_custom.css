@@ -90,6 +90,11 @@ a {
     cursor: pointer;
 }
 
+/* events listing */
+.status-cancelled a {
+  text-decoration: line-through;
+}
+
 
 /* bill status labels */
 .label-stale{
