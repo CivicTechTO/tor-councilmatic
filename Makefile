@@ -1,26 +1,26 @@
-PIP ?= pip
-PYTHON ?= python
+ensure-virtualenv:
+	# Makes sure that we're in a virtualenv before proceeding
+	@(echo "import sys" ; echo "if not hasattr(sys, 'real_prefix'): sys.exit(1)") | python
 
-pip-install: ## Install pinned packages from requirements.lock
-	${PIP} install -r requirements.lock
+pip-install: ensure-virtualenv ## Install pinned packages from requirements.lock
+	pip install -r requirements.lock
 
-pip-update: ## Update packages from requirements.unlocked.txt
-	${PIP} install --upgrade -r requirements.unlocked.txt
+pip-update: ensure-virtualenv ## Update packages from requirements.unlocked.txt
+	pip install --upgrade -r requirements.unlocked.txt
 
-pip-lock: ## Lock packages into requirements.lock
-	${PIP} freeze > requirements.lock
+pip-lock: ensure-virtualenv ## Lock packages into requirements.lock
+	pip freeze > requirements.lock
 
 django-setup: ## Run initial local setup tasks
 	cp --backup=numbered example.env .env
 
-django-db-reset: ## Reset the database & run migrations
-	dropdb tor_councilmatic
-	createdb tor_councilmatic
-	${PYTHON} manage.py migrate --no-initial-data
+django-db-reset: ensure-virtualenv ## Reset the database & run migrations
+	./manage.py flush
+	./manage.py migrate --no-initial-data
 
-django-loaddata: ## Load objects updated within the past 2 weeks
+django-loaddata: ensure-virtualenv ## Load objects updated within the past 2 weeks
 	$(eval MONTH_AGO := $(shell date --date='2 weeks ago' '+%F'))
-	${PYTHON} manage.py loaddata --update_since $(MONTH_AGO)
+	./manage.py loaddata --update_since $(MONTH_AGO)
 
 heroku-deploy: ## Deploy to Heroku via git-push
 	git push heroku master
