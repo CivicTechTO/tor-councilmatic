@@ -43,6 +43,7 @@ class Default(DeploymentConfig, JurisdictionConfig, Base):
         'haystack',
         'councilmatic_core',
         'chicago',
+        'autofixture',
     )
 
     try:

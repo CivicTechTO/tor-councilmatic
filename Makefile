@@ -15,12 +15,20 @@ django-setup: ## Run initial local setup tasks
 	cp --backup=numbered example.env .env
 
 django-db-reset: ensure-virtualenv ## Reset the database & run migrations
-	./manage.py flush
+	rm -f tor_councilmatic.db
 	./manage.py migrate --no-initial-data
 
+# Do it in this order to get most important objects first,
+# so we'll still have a runnable app even if cancelled.
 django-loaddata: ensure-virtualenv ## Load objects updated within the past 2 weeks
 	$(eval MONTH_AGO := $(shell date --date='2 weeks ago' '+%F'))
-	./manage.py loaddata --update_since $(MONTH_AGO)
+	./manage.py loaddata --update_since=$(MONTH_AGO) --endpoint=events
+	./manage.py loaddata --update_since=$(MONTH_AGO) --endpoint=organizations
+	./manage.py loaddata --update_since=$(MONTH_AGO) --endpoint=people
+	./manage.py loaddata --update_since=$(MONTH_AGO) --endpoint=bills
+
+django-run: ensure-virtualenv ## Run simple server
+	./manage.py runserver
 
 heroku-deploy: ## Deploy to Heroku via git-push
 	git push heroku master
