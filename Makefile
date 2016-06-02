@@ -1,6 +1,6 @@
 ensure-virtualenv:
-	# Makes sure that we're in a virtualenv before proceeding
-	@(echo "import sys" ; echo "if not hasattr(sys, 'real_prefix'): sys.exit(1)") | python
+	@(echo "import sys" ; echo "if not hasattr(sys, 'real_prefix'): sys.exit(1)") | python \
+		|| (echo "Please activate your virtualenv. (See README for details.)" && exit 1)
 
 pip-install: ensure-virtualenv ## Install pinned packages from requirements.lock
 	pip install -r requirements.lock
