@@ -1,6 +1,6 @@
 # Toronto Councilmatic
 
-[![HuBoard badge](http://img.shields.io/badge/Hu-Board-7965cc.svg)](https://huboard.com/CivicTechTO/tor-councilmatic/)
+[![HuBoard badge](http://img.shields.io/badge/Hu-Board-7965cc.svg)](https://huboard.com/CivicTechTO/tor-councilmatic#/?milestone=[%22Public%20Launch%22])
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
@@ -8,7 +8,7 @@ Keep track of what Toronto City Council is doing.
 
 ## Setup
 
-**Install OS level dependencies:** 
+**Install OS level dependencies:**
 
 * Python 3.4
 * PostgreSQL 9.4 +
@@ -32,7 +32,7 @@ pip install -r requirements.txt
 
 Afterwards, whenever you want to use this virtual environment to work on tor-councilmatic, run `workon tor-councilmatic`
 
-**OPTIONAL: install django-councilmatic locally**  
+**OPTIONAL: install django-councilmatic locally**
 If you plan on making changes to core councilmatic features (as opposed to Chicago-specific stuff), you'll want to install django-councilmatic locally instead of installing from pypi.
 
 ```bash
@@ -112,7 +112,7 @@ On OS X:
 [http://java.com/en/download/mac_download.jsp?locale=en](http://java.com/en/download/mac_download.jsp?locale=en)
 2. Follow normal install procedure
 3. Change system Java to use the version you just installed:
-    
+
     ``` bash
     sudo mv /usr/bin/java /usr/bin/java16
     sudo ln -s /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin/java /usr/bin/java
@@ -120,7 +120,7 @@ On OS X:
 
 **Download & setup Solr**
 
-``` bash 
+``` bash
 wget http://mirror.sdunix.com/apache/lucene/solr/4.10.4/solr-4.10.4.tgz
 tar -xvf solr-4.10.4.tgz
 sudo cp -R solr-4.10.4/example /opt/solr
@@ -150,7 +150,7 @@ Just running Solr as described above is probably OK in a development setting.
 To deploy Solr in production, you'll want to use something like Jetty. Here's
 how you'd do that on Ubuntu:
 
-``` bash 
+``` bash
 sudo apt-get install jetty
 
 # Backup stock init.d script
@@ -194,7 +194,7 @@ configuring things properly.
 
 ## Team
 
-* David Moore - project manager 
+* David Moore - project manager
 * Forest Gregg - Open Civic Data (OCD) and Legistar scraping
 * Cathy Deng - data models and loading
 * Derek Eder - front end
@@ -206,7 +206,7 @@ If something is not behaving intuitively, it is a bug, and should be reported.
 Report it here: https://github.com/datamade/chi-councilmatic/issues
 
 ## Note on Patches/Pull Requests
- 
+
 * Fork the project.
 * Make your feature addition or bug fix.
 * Commit, do not mess with rakefile, version, or history.
