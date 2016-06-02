@@ -63,3 +63,7 @@ static/**
 
 # Heroku
 .env
+
+.vagrant/
+src/
+tor_councilmatic.db

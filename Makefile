@@ -1,23 +1,34 @@
-pip-install: ## Install pinned packages from requirements.lock
+ensure-virtualenv:
+	@(echo "import sys" ; echo "if not hasattr(sys, 'real_prefix'): sys.exit(1)") | python \
+		|| (echo "Please activate your virtualenv. (See README for details.)" && exit 1)
+
+pip-install: ensure-virtualenv ## Install pinned packages from requirements.lock
 	pip install -r requirements.lock
 
-pip-update: ## Update packages from requirements.unlocked.txt
+pip-update: ensure-virtualenv ## Update packages from requirements.unlocked.txt
 	pip install --upgrade -r requirements.unlocked.txt
 
-pip-lock: ## Lock packages into requirements.lock
+pip-lock: ensure-virtualenv ## Lock packages into requirements.lock
 	pip freeze > requirements.lock
 
 django-setup: ## Run initial local setup tasks
 	cp --backup=numbered example.env .env
 
-django-db-reset: ## Reset the database & run migrations
-	dropdb tor_councilmatic
-	createdb tor_councilmatic
-	python manage.py migrate --no-initial-data
+django-db-reset: ensure-virtualenv ## Reset the database & run migrations
+	rm -f tor_councilmatic.db
+	./manage.py migrate --no-initial-data
 
-django-loaddata: ## Load objects updated within the past 2 weeks
+# Do it in this order to get most important objects first,
+# so we'll still have a runnable app even if cancelled.
+django-loaddata: ensure-virtualenv ## Load objects updated within the past 2 weeks
 	$(eval MONTH_AGO := $(shell date --date='2 weeks ago' '+%F'))
-	python manage.py loaddata --update_since $(MONTH_AGO)
+	./manage.py loaddata --update_since=$(MONTH_AGO) --endpoint=events
+	./manage.py loaddata --update_since=$(MONTH_AGO) --endpoint=organizations
+	./manage.py loaddata --update_since=$(MONTH_AGO) --endpoint=people
+	./manage.py loaddata --update_since=$(MONTH_AGO) --endpoint=bills
+
+django-run: ensure-virtualenv ## Run simple server
+	./manage.py runserver
 
 heroku-deploy: ## Deploy to Heroku via git-push
 	git push heroku master

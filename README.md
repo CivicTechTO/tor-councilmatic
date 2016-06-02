@@ -2,32 +2,34 @@
 
 [![HuBoard badge](http://img.shields.io/badge/Hu-Board-7965cc.svg)](https://huboard.com/CivicTechTO/tor-councilmatic#/?milestone=[%22Public%20Launch%22])
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-
 Keep track of what Toronto City Council is doing.
 
 ## Setup
 
+Setup will be different if you are using Windows.
+
+#### Mac / Linux
+
 **Install OS level dependencies:**
 
-* Python 3.4
-* PostgreSQL 9.4 +
-* GNU make
+* Python 3
+* [SQLite3](http://mislav.net/rails/install-sqlite3/)
+* GNU Make
 
 * You may view descriptions of all `make` helper tasks by running `make`
   from within the project directory.
 
 **Install app requirements**
 
-We recommend using [virtualenv](http://virtualenv.readthedocs.org/en/latest/virtualenv.html) and [virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/en/latest/install.html) for working in a virtualized development environment. [Read how to set up virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/).
+We recommend using [virtualenv](http://virtualenv.readthedocs.org/en/latest/virtualenv.html) and [virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/en/latest/install.html) for sandboxing your Python development environment. [Read how to set up virtualenv](http://docs.python-guide.org/en/latest/dev/virtualenvs/).
 
 Once you have virtualenvwrapper set up,
 
 ```bash
-mkvirtualenv tor-councilmatic
+mkvirtualenv tor-councilmatic --python=$(which python3)
 git clone https://github.com/civictechto/tor-councilmatic.git
 cd tor-councilmatic
-pip install -r requirements.txt
+make pip-install
 ```
 
 Afterwards, whenever you want to use this virtual environment to work on tor-councilmatic, run `workon tor-councilmatic`
@@ -43,41 +45,16 @@ python setup.py develop
 cd ../tor-councilmatic
 ```
 
-**Create your settings file**
-
-We're attemptin to use the principles of the [12-Factor
-App](http://12factor.net/), so a good deal of configuration happens via
-environment variables, which are set in a `.env` file during local
-development. You can load some sensible defaults with this:
-
-    make django-setup
-
-- if you're setting up councilmatic for local development, use a dummy cache by setting `CACHES['default']['BACKEND']` to `'django.core.cache.backends.dummy.DummyCache'`. if you're deploying, leave it as is
-
 **Setup your database**
 
-Before we can run the website, we need to create a database.
-
 ```bash
-createdb tor_councilmatic
-createuser tor_councilmatic
-```
-
-Then, run migrations
-
-```bash
-make django-migrate
-```
-
-Create an admin user - set a username & password when prompted
-
-```bash
-python manage.py createsuperuser
+make django-db-reset
 ```
 
 ## Importing data from the open civic data api
 
-Run the loaddata management command. This may take a while, depending on volume.
+The following make task will run the loaddata management command under
+the hood. This may take a while, depending on volume.
 
 ```bash
 make django-loaddata
@@ -90,10 +67,10 @@ The loaddata command has some more nuance than the description above, for the di
 ## Running Chicago Councilmatic locally
 
 ``` bash
-python manage.py runserver
+make django-run
 ```
 
-navigate to http://localhost:8000/
+Navigate to http://localhost:8000/
 
 ## Setup Search
 
