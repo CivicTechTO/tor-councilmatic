@@ -2,7 +2,7 @@
 
 [![Issues in HuBoard](https://img.shields.io/github/issues/civictechto/tor-councilmatic.svg?label=HuBoard)](https://huboard.com/CivicTechTO/tor-councilmatic#/?milestone=["Public Launch"])
 [![HuBoard: Ready](https://img.shields.io/github/issues-raw/civictechto/tor-councilmatic/1 - Ready.svg?label=Ready)](https://huboard.com/CivicTechTO/tor-councilmatic#/?milestone=["Public Launch"])
-[![HuBoard: Working](https://img.shields.io/github/issues-raw/civictechto/tor-councilmatic/2 - Working.svg?label=Working)](https://huboard.com/CivicTechTO/tor-councilmatic#/?milestone=["Public Launch"])
+[![HuBoard: Working](https://img.shields.io/github/issues-raw/civictechto/tor-councilmatic/2 - Working <= 5.svg?label=Working)](https://huboard.com/CivicTechTO/tor-councilmatic#/?milestone=["Public Launch"])
 [![HuBoard: Review](https://img.shields.io/github/issues-raw/civictechto/tor-councilmatic/3 - Review.svg?label=Review)](https://huboard.com/CivicTechTO/tor-councilmatic#/?milestone=["Public Launch"])
 
 Keep track of what Toronto City Council is doing.
