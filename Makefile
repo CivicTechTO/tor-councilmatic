@@ -28,7 +28,7 @@ django-loaddata: ensure-virtualenv ## Load objects updated within the past 2 wee
 	./manage.py loaddata --update_since=$(MONTH_AGO) --endpoint=bills
 
 django-run: ensure-virtualenv ## Run simple server
-	./manage.py runserver
+	gunicorn councilmatic.wsgi --log-file -
 
 heroku-deploy: ## Deploy to Heroku via git-push
 	git push heroku master
