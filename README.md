@@ -13,7 +13,7 @@ current milestone.
 ## Getting Started
 
 Setup instructions will vary, depending on whether you're using
-Windows or Mac/Linux.
+[Windows](#windows) or [Mac/Linux](#mac--linux).
 
 ### Windows
 
