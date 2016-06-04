@@ -55,14 +55,13 @@ powerful system for this approach. (Yay!)
 
 **Requirements:**
 
-* Python 3: The newest python, which is often not the system default.
-* [SQLite3](http://mislav.net/rails/install-sqlite3/): For our
-  development database
-* GNU Make: For running helper tasks.
+* [Install **Python 3.**.](http://www.tutorialspoint.com/python/python_environment.htm)
+* [Install **SQLite3**.](http://mislav.net/rails/install-sqlite3/) For our
+  development database.
 * [`virtualenv`](http://virtualenv.readthedocs.org/en/latest/virtualenv.html): For sandboxing our python packages.
 * [`virtualenvwrapper`](http://virtualenvwrapper.readthedocs.org/en/latest/install.html): For helping us manage `virtualenv`.
 
-View descriptions of all the helper tasks by running `make` in the
+View descriptions of all the helper tasks by running `invoke --list` in the
 project root directory.
 
 [Read how to set up virtualenv.](http://docs.python-guide.org/en/latest/dev/virtualenvs/)
@@ -73,7 +72,7 @@ Once you have `virtualenv` and `virtualenvwrapper` set up:
 mkvirtualenv tor-councilmatic --python=$(which python3)
 git clone https://github.com/civictechto/tor-councilmatic.git
 cd tor-councilmatic
-make pip-install
+invoke pip.install
 ```
 
 Afterwards, whenever you want to use this virtual environment to work on
@@ -86,7 +85,7 @@ workon tor-councilmatic
 To set up the SQLite database:
 
 ```bash
-make django-db-reset
+invoke django.db_reset
 ```
 
 You can re-run that command to wipe the database and start fresh.
@@ -105,13 +104,13 @@ cd ../tor-councilmatic
 
 ## Importing data from the open civic data api
 
-The following make task will run the `loaddata` management command under
+The following invoke task will run the `loaddata` management command under
 the hood. By default, it's pulling data from Toronto's OCD API endpoint
 at [toronto-ocd-api.herokuapp.com][] (This may take a while, depending
 on volume of data.)
 
 ```bash
-make django-loaddata
+invoke django.loaddata
 ```
 
 By default, the loaddata command is smart about what it looks at on the
@@ -130,7 +129,7 @@ open up an issue and pester us to write better documentation.
 ## Running Chicago Councilmatic locally
 
 ``` bash
-make django-run
+invoke django.run
 ```
 
 Navigate to http://localhost:8000/
