@@ -157,79 +157,10 @@ On OS X:
     sudo ln -s /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin/java /usr/bin/java
     ```
 
-**Download & setup Solr**
-
-``` bash
-wget http://mirror.sdunix.com/apache/lucene/solr/4.10.4/solr-4.10.4.tgz
-tar -xvf solr-4.10.4.tgz
-sudo cp -R solr-4.10.4/example /opt/solr
-
-# Copy schema.xml for this app to solr directory
-sudo cp solr_scripts/schema.xml /opt/solr/example/solr/collection1/conf/schema.xml
-```
-
-**Run Solr**
-```bash
-# Next, start the java application that runs solr
-# Do this in another terminal window & keep it running
-# If you see error output, somethings wrong
-cd /opt/solr/example
-sudo java -jar start.jar
-```
-
 **Index the database**
 ```bash
-# back in the chi-councilmatic directory:
 python manage.py rebuild_index
 ```
-
-**OPTIONAL: Install and configure Jetty for Solr**
-
-Just running Solr as described above is probably OK in a development setting.
-To deploy Solr in production, you'll want to use something like Jetty. Here's
-how you'd do that on Ubuntu:
-
-``` bash
-sudo apt-get install jetty
-
-# Backup stock init.d script
-sudo mv /etc/init.d/jetty ~/jetty.orig
-
-# Get init.d script suggested by Solr docs
-sudo cp solr_scripts/jetty.sh /etc/init.d/jetty
-sudo chown root.root /etc/init.d/jetty
-sudo chmod 755 /etc/init.d/jetty
-
-# Add Solr specific configs to /etc/default/jetty
-sudo cp solr_scripts/jetty.conf /etc/default/jetty
-
-# Change ownership of the Solr directory so Jetty can get at it
-sudo chown -R jetty.jetty /opt/solr
-
-# Start up Solr
-sudo service jetty start
-
-# Solr should now be running on port 8983
-```
-
-**Regenerate Solr schema**
-
-While developing, if you need to make changes to the fields that are getting
-indexed or how they are getting indexed, you'll need to regenerate the
-schema.xml file that Solr uses to make it's magic. Here's how that works:
-
-```
-python manage.py build_solr_schema > solr_scripts/schema.xml
-cp solr_scripts/schema.xml /opt/solr/solr/collection1/conf/schema.xml
-```
-
-In order for Solr to use the new schema file, you'll need to restart it.
-
-**Using Solr for more than one Councilmatic on the same server**
-
-If you intend to run more than one instance of Councilmatic on the same server,
-you'll need to take a look at [this README](solr_scripts/README.md) to make sure you're
-configuring things properly.
 
 ## Team
 
