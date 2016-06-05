@@ -61,8 +61,8 @@ powerful system for this approach. (Yay!)
 * [`virtualenv`](http://virtualenv.readthedocs.org/en/latest/virtualenv.html): For sandboxing our python packages.
 * [`virtualenvwrapper`](http://virtualenvwrapper.readthedocs.org/en/latest/install.html): For helping us manage `virtualenv`.
 
-View descriptions of all the helper tasks by running `invoke --list` in the
-project root directory.
+View descriptions of all the helper tasks by running the bare `invoke`
+command in the project root directory.
 
 [Read how to set up virtualenv.](http://docs.python-guide.org/en/latest/dev/virtualenvs/)
 
@@ -72,7 +72,7 @@ Once you have `virtualenv` and `virtualenvwrapper` set up:
 mkvirtualenv tor-councilmatic --python=$(which python3)
 git clone https://github.com/civictechto/tor-councilmatic.git
 cd tor-councilmatic
-invoke pip.install
+inv pip.install
 ```
 
 Afterwards, whenever you want to use this virtual environment to work on
@@ -85,7 +85,7 @@ workon tor-councilmatic
 To set up the SQLite database:
 
 ```bash
-invoke django.db_reset
+inv django.db_reset
 ```
 
 You can re-run that command to wipe the database and start fresh.
@@ -110,7 +110,7 @@ at [toronto-ocd-api.herokuapp.com][] (This may take a while, depending
 on volume of data.)
 
 ```bash
-invoke django.loaddata
+inv django.loaddata
 ```
 
 By default, the loaddata command is smart about what it looks at on the
@@ -129,7 +129,7 @@ open up an issue and pester us to write better documentation.
 ## Running Chicago Councilmatic locally
 
 ``` bash
-invoke django.run
+inv django.run
 ```
 
 Navigate to http://localhost:8000/

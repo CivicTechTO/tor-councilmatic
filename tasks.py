@@ -4,6 +4,14 @@ import subprocess
 
 ns = Collection()
 
+@task(default=True)
+def list_tasks():
+    """Show tasks, basically an alias for --list.
+
+    Needed as a default task due to https://github.com/pyinvoke/invoke/issues/180
+    """
+    run('invoke --list')
+
 @task()
 def check_venv():
     """Check whether virtualenv is being used"""
@@ -15,6 +23,7 @@ def check_venv():
         print('Yay! You are properly using virtualenv. Continuing...')
 
 ns.add_task(check_venv)
+ns.add_task(list_tasks)
 
 pip = Collection('pip')
 
