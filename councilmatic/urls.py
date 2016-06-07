@@ -39,7 +39,7 @@ urlpatterns = [
     url(r'^about/$', ChicagoAboutView.as_view(), name='about'),
     url(r'^legislation/(?P<slug>[^/]+)/$', ChicagoBillDetailView.as_view(), name='bill_detail'),
     url(r'^legislation/(?P<slug>[^/]+)/rss/$', BillDetailActionFeed(), name='bill_detail_action_feed'),
-    url(r'^person/(?P<slug>.*)/$', TorontoPersonDetailView.as_view(), name='person'),
+    url(r'^person/(?P<slug>[^/]+)/$', TorontoPersonDetailView.as_view(), name='person'),
     url(r'^council-members/$', ChicagoCouncilMembersView.as_view(), name='council_members'),
     url(r'^events/', TorontoEventsView.as_view(), name='events'),
     url(r'^event/(?P<slug>.*)/$',
