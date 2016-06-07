@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.views.generic.base import RedirectView
 from haystack.query import SearchQuerySet
 from councilmatic_core.views import CouncilmaticSearchForm, CouncilmaticFacetedSearchView
+from councilmatic_core.feeds import CouncilmaticFacetedSearchFeed
 from chicago.views import *
 
 sqs = SearchQuerySet().facet('bill_type')\
@@ -30,8 +31,9 @@ sqs = SearchQuerySet().facet('bill_type')\
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^search/', CouncilmaticFacetedSearchView(searchqueryset=sqs, 
-                                       form_class=CouncilmaticSearchForm)),
+    url(r'^search/rss/', CouncilmaticFacetedSearchFeed(), name='councilmatic_search_feed'),
+    url(r'^search/', CouncilmaticFacetedSearchView(searchqueryset=sqs,
+                                       form_class=CouncilmaticSearchForm), name='councilmatic_search'),
     url(r'^$', ChicagoIndexView.as_view(), name='index'),
     url(r'^about/$', ChicagoAboutView.as_view(), name='about'),
     url(r'^legislation/(?P<old_id>[0-9]+)/*$', bill_detail_redirect, name='bill_detail_redirect'),
