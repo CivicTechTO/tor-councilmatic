@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.views.generic.base import RedirectView
 from haystack.query import SearchQuerySet
 from councilmatic_core.views import CouncilmaticSearchForm, CouncilmaticFacetedSearchView
-from councilmatic_core.feeds import CouncilmaticFacetedSearchFeed
+from councilmatic_core.feeds import CouncilmaticFacetedSearchFeed, BillDetailActionFeed
 from chicago.views import *
 
 sqs = SearchQuerySet().facet('bill_type')\
@@ -36,8 +36,8 @@ urlpatterns = [
                                        form_class=CouncilmaticSearchForm), name='councilmatic_search'),
     url(r'^$', ChicagoIndexView.as_view(), name='index'),
     url(r'^about/$', ChicagoAboutView.as_view(), name='about'),
-    url(r'^legislation/(?P<old_id>[0-9]+)/*$', bill_detail_redirect, name='bill_detail_redirect'),
-    url(r'^legislation/(?P<slug>.*)/$', ChicagoBillDetailView.as_view(), name='bill_detail'),
+    url(r'^legislation/(?P<slug>[^/]+)/$', ChicagoBillDetailView.as_view(), name='bill_detail'),
+    url(r'^legislation/(?P<slug>[^/]+)/rss/$', BillDetailActionFeed(), name='bill_detail_action_feed'),
     url(r'^person/(?P<slug>.*)/$', TorontoPersonDetailView.as_view(), name='person'),
     url(r'^council-members/$', ChicagoCouncilMembersView.as_view(), name='council_members'),
     url(r'^events/', TorontoEventsView.as_view(), name='events'),
