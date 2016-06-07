@@ -20,6 +20,7 @@ from haystack.query import SearchQuerySet
 from councilmatic_core.views import CouncilmaticSearchForm, CouncilmaticFacetedSearchView
 from councilmatic_core.feeds import CouncilmaticFacetedSearchFeed, BillDetailActionFeed
 from chicago.views import *
+from chicago.feeds import *
 
 sqs = SearchQuerySet().facet('bill_type')\
                       .facet('sponsorships')\
@@ -31,7 +32,7 @@ sqs = SearchQuerySet().facet('bill_type')\
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^search/rss/', CouncilmaticFacetedSearchFeed(), name='councilmatic_search_feed'),
+    url(r'^search/rss/', TorontoCouncilmaticFacetedSearchFeed(), name='councilmatic_search_feed'),
     url(r'^search/', CouncilmaticFacetedSearchView(searchqueryset=sqs,
                                        form_class=CouncilmaticSearchForm), name='councilmatic_search'),
     url(r'^$', ChicagoIndexView.as_view(), name='index'),
