@@ -72,7 +72,7 @@ def django_loaddata():
 
 @task(check_venv, help={'elasticsearch': 'Use local elasticsearch service. (Allows faceted search)'})
 def django_run(elasticsearch=False):
-    """Run simple server"""
+    """Run a local server for Councilmatic"""
     cmd = 'gunicorn councilmatic.wsgi --log-file -'
     if elasticsearch:
         es_base = '127.0.0.1:9200'
@@ -81,6 +81,7 @@ def django_run(elasticsearch=False):
         es_url = es_base + '/' + es_index
         try:
             urllib.request.urlopen('http://'+es_base)
+            print('Yay! Elasticsearch appears to be running...')
         except URLError:
             raise ValueError("Elasticsearch not available at "+es_url)
         cmd = 'SEARCH_URL=elasticsearch://' + es_url + ' ' + cmd
