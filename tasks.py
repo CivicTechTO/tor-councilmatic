@@ -2,6 +2,9 @@ from invoke import run, task, Collection
 import sys
 import subprocess
 
+import urllib.request
+from urllib.error import URLError
+
 ns = Collection()
 
 @task(default=True)
@@ -67,10 +70,21 @@ def django_loaddata():
     run('./manage.py loaddata --update_since={} --endpoint=bills'.format(date))
     print(date)
 
-@task(check_venv)
-def django_run():
+@task(check_venv, help={'elasticsearch': 'Use local elasticsearch service. (Allows faceted search)'})
+def django_run(elasticsearch=False):
     """Run simple server"""
-    run('gunicorn councilmatic.wsgi --log-file -')
+    cmd = 'gunicorn councilmatic.wsgi --log-file -'
+    if elasticsearch:
+        es_base = '127.0.0.1:9200'
+        es_index = 'toronto'
+
+        es_url = es_base + '/' + es_index
+        try:
+            urllib.request.urlopen('http://'+es_base)
+        except URLError:
+            raise ValueError("Elasticsearch not available at "+es_url)
+        cmd = 'SEARCH_URL=elasticsearch://' + es_url + ' ' + cmd
+    run(cmd)
 
 django.add_task(django_db_reset, 'db_reset')
 django.add_task(django_loaddata, 'loaddata')

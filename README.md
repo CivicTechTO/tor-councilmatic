@@ -135,32 +135,31 @@ inv django.run
 
 Navigate to http://localhost:8000/
 
-## Setup Search
+## Setup Elasticsearch
 
-**Install Open JDK or update Java**
+Haystack is a python package that helps us provide search in our app. It
+can use many different search backends. We use a powerful search backend
+service called "Elasticsearch" in staging and production. However, in
+order to make local development easier, we default to using a "Simple
+Search" backend. It works well, but does not allow for [faceted
+search](https://stackoverflow.com/questions/5321595/what-is-faceted-search)
+features.
 
-On Ubuntu:
+To enable faceted search features for local testing, you'll need to
+[install
+Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/_installation.html).
 
-``` bash
-$ sudo apt-get update
-$ sudo apt-get install openjdk-7-jre-headless
+Once installed and running, assuming you've already run through the
+`loaddata` process, you'll need to index the database:
+
+```bash
+./manage.py rebuild_index
 ```
 
-On OS X:
+You can then run Councilmatic using Elasticsearch like so:
 
-1. Download latest Java from
-[http://java.com/en/download/mac_download.jsp?locale=en](http://java.com/en/download/mac_download.jsp?locale=en)
-2. Follow normal install procedure
-3. Change system Java to use the version you just installed:
-
-    ``` bash
-    sudo mv /usr/bin/java /usr/bin/java16
-    sudo ln -s /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin/java /usr/bin/java
-    ```
-
-**Index the database**
-```bash
-python manage.py rebuild_index
+```
+inv django.run --elasticsearch
 ```
 
 ## Team
