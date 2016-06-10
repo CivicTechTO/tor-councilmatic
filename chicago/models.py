@@ -70,7 +70,7 @@ class ChicagoBill(Bill):
 
     @property
     def topics(self):
-        tags = topic_classifier(self.description)
+        tags = topic_classifier(self)
         if 'Routine' in tags:
             tags.remove('Routine')
             tags = ['Routine'] + tags
