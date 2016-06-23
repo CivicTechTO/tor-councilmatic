@@ -62,6 +62,7 @@ def django_db_reset():
     """Reset the database & run migrations"""
     run('rm -f tor_councilmatic.db')
     run('./manage.py migrate --no-initial-data')
+    run('./manage.py createcachetable')
 
 @task(check_venv)
 def django_loaddata():
