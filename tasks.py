@@ -1,6 +1,6 @@
 from invoke import run, task, Collection
+import datetime
 import sys
-import subprocess
 
 import urllib.request
 from urllib.error import URLError
@@ -61,13 +61,10 @@ def django_db_reset():
 @task(check_venv)
 def django_loaddata():
     """Load objects updated within the past 2 weeks"""
-    cmd = 'date --date="2 weeks ago" "+%F"'
-    proc = subprocess.popen(cmd, stdout=subprocess.PIPE)
-    date = proc.stdout.read()
-    run('./manage.py loaddata --update_since={} --endpoint=events'.format(date))
-    run('./manage.py loaddata --update_since={} --endpoint=organizations'.format(date))
-    run('./manage.py loaddata --update_since={} --endpoint=people'.format(date))
-    run('./manage.py loaddata --update_since={} --endpoint=bills'.format(date))
+    today = datetime.date.today()
+    two_weeks_ago = today - datetime.timedelta(days=14)
+    date = two_weeks_ago.isoformat()
+    run('./manage.py loaddata --update_since={}'.format(date), pty=True)
     print(date)
 
 @task(check_venv, help={'elasticsearch': 'Use local elasticsearch service. (Allows faceted search)'})
