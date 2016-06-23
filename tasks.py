@@ -65,7 +65,6 @@ def django_loaddata():
     two_weeks_ago = today - datetime.timedelta(days=14)
     date = two_weeks_ago.isoformat()
     run('./manage.py loaddata --update_since={}'.format(date), pty=True)
-    print(date)
 
 @task(check_venv, help={'elasticsearch': 'Use local elasticsearch service. (Allows faceted search)'})
 def django_run(elasticsearch=False):
