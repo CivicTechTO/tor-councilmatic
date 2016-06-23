@@ -1,5 +1,6 @@
 from invoke import run, task, Collection
 import datetime
+import os
 import sys
 
 import urllib.request
@@ -18,6 +19,10 @@ def list_tasks():
 @task()
 def check_venv():
     """Check whether virtualenv is being used"""
+    if os.environ.get('HEROKU_APP_ID'):
+        print('Running on Heroku. Skipping virtualenv check...')
+        return
+
     if not hasattr(sys, 'real_prefix'):
         print('This project requires using virtualenv. Please activate it.')
         print('(See README for details.')
