@@ -1,30 +1,36 @@
 def topic_classifier(bill) :
     title = bill.description.lower()
+    classified = False
 
     tags = []
 
     # Determine whether city or ward matters.
     # If list is empty, it's city-wide
     if not bill.wards:
+        classified = True
         tags = tags + ["City Matters"]
     else:
+        classified = True
         tags = tags + ["Ward Matters"]
 
-    routine_codes = ['MM', 'BL']
+    routine_codes = ['RM', 'BL']
     if any(code in bill.identifier for code in routine_codes):
-        return tags + ['Member Motion']
+        classified = True
+        tags = tags + ['Routine']
 
-    if 'RM' in bill.identifier:
-        return tags + ['Routine']
+    if 'MM' in bill.identifier:
+        classified = True
+        tags = tags + ['Member Motion']
 
     if 'CC' in bill.identifier:
-        return tags + ['New Business']
+        classified = True
+        tags = tags + ['New Business']
 
     if 'IA' in bill.identifier:
-        return tags + ['Administrative Inquiry']
+        classified = True
+        tags = tags + ['Administrative Inquiry']
 
-    # If Ward=all tag 'City Matters'
+    if not classified:
+        tags = tags + ['Unclassified']
 
-    # If Ward=n+ tag 'Ward Matters'
-
-    return tags + ['Unclassified']
+    return tags
