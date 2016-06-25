@@ -365,14 +365,16 @@ class Command(BaseCommand):
         if page_json['extras'].get('local_classification'):
             bill_type = page_json['extras']['local_classification']
 
-        if page_json['extras'].get('wards'):
-            wards = [] if wards == 'all' else wards
-
         elif len(page_json['classification']) == 1:
             bill_type = page_json['classification'][0]
 
         else:
             raise Exception(page_json['classification'])
+
+        wards = page_json['extras'].get('wards')
+        if wards:
+            wards = [] if wards == 'all' else wards
+
 
         if 'full_text' in page_json['extras']:
             full_text = page_json['extras']['full_text']
