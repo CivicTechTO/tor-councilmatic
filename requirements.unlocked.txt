@@ -14,3 +14,4 @@ elasticsearch>=1.0.0,<2.0.0
 # @see https://github.com/django-haystack/django-haystack/pull/1268#issuecomment-192019280
 django-haystack<=2.4.1
 newrelic
+jsonfield

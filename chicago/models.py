@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from councilmatic_core.models import Bill, Event, Person
 from datetime import datetime
+from jsonfield import JSONField
 import pytz
 from .helpers import topic_classifier
 import re
@@ -10,9 +11,7 @@ from urllib.parse import quote
 app_timezone = pytz.timezone(settings.TIME_ZONE)
 
 class ChicagoBill(Bill):
-
-    class Meta:
-        proxy = True
+    wards = JSONField()
 
     @property
     def friendly_name(self):
@@ -111,11 +110,11 @@ class ChicagoBill(Bill):
         """
         base_url = 'https://pic.datamade.us/chicago/document/'
         # base_url = 'http://127.0.0.1:5000/chicago/document/'
-        
+
         if self.documents.filter(document_type='V').all():
             legistar_doc_url = self.documents.filter(document_type='V').first().document.url
-            doc_url = '{0}?filename={2}&document_url={1}'.format(base_url, 
-                                                                 legistar_doc_url, 
+            doc_url = '{0}?filename={2}&document_url={1}'.format(base_url,
+                                                                 legistar_doc_url,
                                                                  self.identifier)
             return doc_url
         else:
