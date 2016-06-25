@@ -1,12 +1,14 @@
 from councilmatic_core.haystack_indexes import BillIndex
 from haystack import indexes
 from chicago.models import ChicagoBill
+from councilmatic_core.models import Post
 from datetime import datetime
 from django.conf import settings
 from django.forms import model_to_dict
 import pytz
 
 app_timezone = pytz.timezone(settings.TIME_ZONE)
+ocd_division_id = settings.OCD_JURISDICTION_ID.replace('ocd-jurisdiction', 'ocd-division').replace('/legislature', '')
 
 class ChicagoBillIndex(BillIndex, indexes.Indexable):
 
@@ -35,7 +37,7 @@ class ChicagoBillIndex(BillIndex, indexes.Indexable):
         return obj.topics
 
     def prepare_wards(self, obj):
-        return ['Ward '+ward for ward in obj.wards]
+        return [Post.objects.all().get(division_ocd_id=ocd_division_id+'/ward:'+ward).label for ward in obj.wards]
 
     # TODO: Revert this workaround
     def prepare_actions(self, obj):
