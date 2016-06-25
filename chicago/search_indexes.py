@@ -11,13 +11,14 @@ app_timezone = pytz.timezone(settings.TIME_ZONE)
 class ChicagoBillIndex(BillIndex, indexes.Indexable):
 
     topics = indexes.MultiValueField(faceted=True)
+    wards = indexes.MultiValueField(faceted=True)
 
     def get_model(self):
         return ChicagoBill
 
     def prepare(self, obj):
         data = super(ChicagoBillIndex, self).prepare(obj)
-        
+
         boost = 0
         if obj.last_action_date:
             now = app_timezone.localize(datetime.now())
@@ -32,6 +33,9 @@ class ChicagoBillIndex(BillIndex, indexes.Indexable):
 
     def prepare_topics(self, obj):
         return obj.topics
+
+    def prepare_wards(self, obj):
+        return ['Ward '+ward for ward in obj.wards]
 
     # TODO: Revert this workaround
     def prepare_actions(self, obj):

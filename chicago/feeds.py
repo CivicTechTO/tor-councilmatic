@@ -13,6 +13,7 @@ class TorontoCouncilmaticFacetedSearchFeed(CouncilmaticFacetedSearchFeed):
                           .facet('controlling_body')\
                           .facet('inferred_status')\
                           .facet('topics')\
+                          .facet('wards')\
                           .facet('legislative_session')\
                           .highlight()
 

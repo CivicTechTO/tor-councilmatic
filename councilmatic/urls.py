@@ -28,6 +28,7 @@ sqs = SearchQuerySet().facet('bill_type')\
                       .facet('inferred_status')\
                       .facet('topics')\
                       .facet('legislative_session')\
+                      .facet('wards')\
                       .highlight()
 
 urlpatterns = [
