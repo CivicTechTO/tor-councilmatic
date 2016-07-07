@@ -37,7 +37,7 @@ class ChicagoBillIndex(BillIndex, indexes.Indexable):
         return obj.topics
 
     def prepare_wards(self, obj):
-        return [Post.objects.all().get(division_ocd_id=ocd_division_id+'/ward:'+ward).label for ward in obj.wards]
+        return [Post.objects.all().get(division_ocd_id=ocd_division_id+'/ward:'+ward).label for ward in obj.wards if 'ward' not in ward]
 
     # TODO: Revert this workaround
     def prepare_actions(self, obj):

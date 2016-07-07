@@ -101,7 +101,6 @@ class TorontoPersonDetailView(PersonDetailView):
 class TorontoEventsView(EventsView):
     def get_context_data(self, **kwargs):
         context = super(TorontoEventsView, self).get_context_data(**kwargs)
-        context['event_time_item'] = 'chicago/partials/event_time_item.html'
         return context
 
 class TorontoEventDetailView(EventDetailView):

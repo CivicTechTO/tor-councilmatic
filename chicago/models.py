@@ -2,7 +2,6 @@ from django.conf import settings
 from django.db import models
 from councilmatic_core.models import Bill, Event, Person
 from datetime import datetime
-from jsonfield import JSONField
 import pytz
 from .helpers import topic_classifier
 import re
@@ -11,7 +10,13 @@ from urllib.parse import quote
 app_timezone = pytz.timezone(settings.TIME_ZONE)
 
 class ChicagoBill(Bill):
-    wards = JSONField()
+
+    class Meta:
+        proxy = True
+
+    @property
+    def wards(self):
+        return self.extras['wards']
 
     @property
     def friendly_name(self):

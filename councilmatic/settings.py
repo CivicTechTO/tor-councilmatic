@@ -34,15 +34,15 @@ class Default(DeploymentConfig, JurisdictionConfig, Base):
     # Application definition
 
     INSTALLED_APPS = (
+        'chicago',
+        'councilmatic_core',
+        'haystack',
         'django.contrib.admin',
         'django.contrib.auth',
         'django.contrib.contenttypes',
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
-        'haystack',
-        'councilmatic_core',
-        'chicago',
     )
 
     try:
@@ -68,7 +68,7 @@ class Default(DeploymentConfig, JurisdictionConfig, Base):
     TEMPLATES = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
-            'DIRS': ['chicago/partials'],
+            'DIRS': [],
             'APP_DIRS': True,
             'OPTIONS': {
                 'context_processors': [

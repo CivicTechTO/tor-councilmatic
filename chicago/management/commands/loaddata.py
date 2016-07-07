@@ -5,12 +5,10 @@ from django.utils.dateparse import parse_datetime, parse_date
 from django.utils.text import slugify
 from django.db.utils import IntegrityError, DataError
 from django.db.models import Max
-from councilmatic_core.models import Person, Organization, Action, ActionRelatedEntity, \
+from councilmatic_core.models import Person, Bill, Organization, Action, ActionRelatedEntity, \
     Post, Membership, Sponsorship, LegislativeSession, \
     Document, BillDocument, Event, EventParticipant, EventDocument, \
     EventAgendaItem, AgendaItemBill
-
-from chicago.models import ChicagoBill as Bill
 
 from dateutil import parser as date_parser
 
@@ -422,7 +420,9 @@ class Command(BaseCommand):
             '_legislative_session': leg_session_obj,
             'bill_type': bill_type,
             'subject': subject,
-            'wards': wards,
+            'extras': {
+                'wards': wards,
+            },
         }
 
         updated = False
@@ -445,7 +445,7 @@ class Command(BaseCommand):
             obj._legislative_session = leg_session_obj
             obj.bill_type = bill_type
             obj.subject = subject
-            obj.wards = wards
+            obj.extras = {'wards': wards}
 
             obj.save()
             updated = True
