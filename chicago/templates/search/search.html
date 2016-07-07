@@ -1,0 +1,276 @@
+{% extends 'base_with_margins.html' %}
+{% load extras %}
+{% load highlight %}
+{% block title %}
+    {% if request.GET.q %}
+        Search results for '{{ request.GET.q }}'
+    {% else %}
+        Search Legislation
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <br/>
+    <div class='jumbotron' id='search-jumbotron'>
+        <p class="h4">
+            Search {{CITY_NAME}} Legislation
+        </p>
+        <form method="get" action=".">
+            <div class="input-group site-intro-search">
+                <input name="q" type="text" class="input-lg form-control" placeholder="{{SEARCH_PLACEHOLDER_TEXT}}" {% if request.GET.q %}value="{{request.GET.q}}"{% endif %}>
+                <div class='input-group-btn'>
+                    <button type="submit" class="btn btn-lg btn-primary">
+                        <i class='fa fa-fw fa-search'></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+
+            {% if selected_facets %}
+                <p>
+                    <a href="/search/" class="btn btn-sm btn-default">
+                    <i class='fa fa-times'></i>
+                    Clear all filters
+                    </a>
+                </p>
+            {% endif %}
+
+            <!-- Legislation Status -->
+            {% with facet_name='inferred_status' facet_label='Status' item_list=facets.fields.inferred_status selected_list=selected_facets.inferred_status %}
+                {% include 'partials/search_filter.html' %}
+            {% endwith %}
+
+
+            <!-- Legislation Type -->
+            {% with facet_name='bill_type' facet_label='Legislation Type' item_list=facets.fields.bill_type selected_list=selected_facets.bill_type %}
+                {% if facets.fields.bill_type|length > 1 %}
+                  {% include 'partials/search_filter.html' %}
+                {% endif %}
+            {% endwith %}
+
+
+            <!-- Topic -->
+            {% if facets.fields.topics %}
+                {% with facet_name='topics' facet_label='Topic' item_list=facets.fields.topics selected_list=selected_facets.topics %}
+                    {% include 'partials/search_filter.html' %}
+                {% endwith %}
+            {% endif %}
+
+
+            <!-- Ward -->
+            {% if facets.fields.wards %}
+                {% with facet_name='wards' facet_label='Ward' item_list=facets.fields.wards selected_list=selected_facets.wards %}
+                    {% include 'partials/search_filter.html' %}
+                {% endwith %}
+            {% endif %}
+
+
+            <!-- Controlling Body -->
+            {% with facet_name='controlling_body' facet_label='Controlling Body' item_list=facets.fields.controlling_body selected_list=selected_facets.controlling_body %}
+                {% include 'partials/search_filter.html' %}
+            {% endwith %}
+
+
+            <!-- Sponsor -->
+            {% with facet_name='sponsorships' facet_label='Sponsor' item_list=facets.fields.sponsorships selected_list=selected_facets.sponsorships %}
+                {% include 'partials/search_filter.html' %}
+            {% endwith %}
+
+
+            <!-- Legislative Session -->
+            {% if facets.fields.legislative_session %}
+                <!-- only show leg sesh filter pane if there is more than one leg sesh to select from -->
+                {% if facets.fields.legislative_session|length > 1 %}
+
+                    {% with facet_name='legislative_session' facet_label='Legislative Session' item_list=facets.fields.legislative_session selected_list=selected_facets.legislative_session %}
+                        {% include 'partials/search_filter.html' %}
+                    {% endwith %}
+
+                {% endif %}
+            {% endif %}
+
+            <div class="divider"></div>
+        </div>
+
+
+
+        <div class="col-sm-8">
+            {% if query %}
+                <h3>{{ paginator.count }} legislation result{{ paginator.count|pluralize }} for '{{ request.GET.q }}'
+			{% with selected_facets=request.GET.selected_facets %}
+			{% if selected_facets %}
+			<a href="/search/rss/?q={{request.GET.q}}&selected_facets={{request.GET.selected_facets}}" title="RSS feed">
+			{% else %}	
+				<a href="/search/rss/?q={{request.GET.q}}" title="RSS feed">
+			{% endif %}
+			{% endwith %}		
+			<i class="fa fa-rss-square" aria-hidden="true"></i></a>			
+		</h3>
+            {% endif %}
+
+        {% for result in page.object_list %}
+
+            <!-- Legislation result -->
+
+            <p>
+                <a class="small" href="/legislation/{{ result.object.slug }}/">{{ result.object.friendly_name }}</a>
+                {{ result.object.inferred_status | inferred_status_label | safe }}
+            </p>
+
+
+            <div class="row">
+                <div class="col-xs-11">
+
+                    {% if query %}
+                        <p class="search-result">
+                            {{ result.highlighted.text.0|safe  }}
+                        </p>
+                    {% else %}
+                        <p>
+                            {{result.object.listing_description | short_blurb}}
+                        </p>
+                    {% endif %}
+
+                </div>
+                <div class='col-xs-1 no-pad-mobile'>
+                    <div>
+                        <a class='btn-bill-detail' href='/legislation/{{ result.object.slug }}/'>
+                            <i class="fa fa-fw fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <p class="small text-muted condensed">
+                <i class="fa fa-fw fa-calendar-o"></i> {{result.object.last_action_date|date:'n/d/Y'}} - {{result.object.current_action.description | remove_action_subj }}
+            </p>
+
+            {% if result.object.primary_sponsor %}
+                <p class="small text-muted condensed">
+                    <i class="fa fa-fw fa-user"></i>
+                    {{result.object.primary_sponsor.person.name}}
+                </p>
+            {% endif %}
+
+            <p class="condensed">
+
+                {% if result.object.topics %}
+                    <i class="fa fa-fw fa-tag"></i>
+                    {% for tag in result.object.topics %}
+                        <span class="badge badge-muted pseudo-topic-tag">
+                            <a href='/search/?q=&selected_facets=topics_exact:{{ tag }}'>{{ tag }}</a>
+                        </span>&nbsp;
+                    {% endfor %}
+                    <br/>
+                {% elif result.object.pseudo_topics %}
+                    <i class="fa fa-fw fa-tag"></i>
+                    {% for tag in result.object.pseudo_topics %}
+                        <span class="badge badge-muted pseudo-topic-tag">
+                            <a href='/search/?q=&selected_facets=topics_exact:{{ tag | committee_topic_only }}'>{{ tag | committee_topic_only }}</a>
+                        </span>&nbsp;
+                    {% endfor %}
+                    <br/>
+                {% endif %}
+
+                <br/>
+            </p>
+
+
+        {% empty %}
+            <p>
+                This site has data from the current legislative session.
+                If you're searching for something older, you can browse the
+                <a href="{{ LEGISTAR_URL }}" target="_blank">
+                    {{ CITY_COUNCIL_NAME }} Legistar site
+                </a>.
+            </p>
+            <p>We'd be happy to help you find what you're looking for -
+                <a href="mailto:info@councilmatic.org">contact us</a>!
+            </p>
+
+        {% endfor %}
+        </div>
+    </div>
+
+
+    {% if page.has_previous or page.has_next %}
+        <div class="row">
+            <div class="col-md-8 col-md-offset-4">
+                <nav>
+                    <ul class="pagination">
+                        {% if page.has_previous %}
+                            <li>
+                                <a href="?{{ q_filters }}&amp;page={{ page.previous_page_number }}" aria-label="Previous"><span aria-hidden="true">&laquo; Previous</span></a>
+                            </li>
+                        {% else %}
+                            <li class="disabled">
+                                <a href="#" aria-label="Previous"><span aria-hidden="true">&laquo; Previous</span></a>
+                            </li>
+                        {% endif %}
+
+                        {% if page.has_next %}
+                            <li>
+                                <a href="?{{ q_filters }}&amp;page={{ page.next_page_number }}" aria-label="Next"><span aria-hidden="true">Next &raquo;</span></a>
+                            </li>
+                        {% else %}
+                            <li class="disabled">
+                                <a href="#" aria-label="Next"><span aria-hidden="true">Next &raquo;</span></a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        $(function() {
+            // filters are collapsed be default b/c they are long
+            // filters w/ class panel-show (i.e. filters that have been selected) are expanded
+            $('.panel-show').addClass('in');
+
+            $(".panel-heading").click(function () {
+                if ($(this).parent().children().eq(1).hasClass("in")){
+                    $(this).find('i').removeClass("fa-minus").addClass("fa-plus");
+                } else{
+                    $(this).find('i').removeClass("fa-plus").addClass("fa-minus");
+                }
+            });
+
+            var existing_q = decodeURIComponent("{{ q_filters }}").replace(/&amp;/g, '&').replace(/\+/g, ' ');
+
+            $(".filter-value").click(function() {
+
+                var addtl_filter = $(this).attr('data');
+
+                if(existing_q){
+                    window.location = '/search/?'+existing_q+'&selected_facets='+encodeURIComponent(addtl_filter);
+                }
+                else{
+                    window.location = '/search/?selected_facets=' + encodeURIComponent(addtl_filter);
+                };
+
+            });
+
+            $(".remove-filter-value").click(function() {
+
+                var to_remove = encodeURIComponent('selected_facets='+$(this).attr('data'))
+
+                var existing_components = existing_q.split("&")
+                var new_components = $.grep(existing_components, function(value) {
+                    return encodeURIComponent(value) != to_remove;
+                });
+
+                window.location = '/search/?' + new_components.join('&');
+
+            });
+
+
+        });
+    </script>
+{% endblock %}

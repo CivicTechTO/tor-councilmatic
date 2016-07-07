@@ -1,6 +1,9 @@
 from django.conf import settings
 from django.db import models
-from councilmatic_core.models import Bill, Event, Person
+from django.db.models import Q
+import operator
+from functools import reduce
+from councilmatic_core.models import Bill, Event, Person, Organization
 from datetime import datetime
 import pytz
 from .helpers import topic_classifier
@@ -151,3 +154,24 @@ class TorontoPerson(Person):
     @property
     def headshot_url(self):
         return '/static/images/manual-headshots/' + self.slug + '.jpg'
+
+    @property
+    def non_council_memberships(self):
+        if hasattr(settings, 'OCD_CITY_COUNCIL_ID'):
+            exclude_kwarg = {'_organization__ocd_id': settings.OCD_CITY_COUNCIL_ID}
+        else:
+            exclude_kwarg = {'_organization__name': settings.OCD_CITY_COUNCIL_NAME}
+        return self.memberships.exclude(**exclude_kwarg).order_by('_organization__name')
+
+class TorontoOrganization(Organization):
+
+    class Meta:
+        proxy = True
+
+    @property
+    def chairs(self):
+        if hasattr(settings, 'COMMITTEE_CHAIR_TITLES'):
+            or_query_terms = [Q(role=title) for title in settings.COMMITTEE_CHAIR_TITLES]
+            return self.memberships.filter(reduce(operator.or_, or_query_terms))
+        else:
+            return []

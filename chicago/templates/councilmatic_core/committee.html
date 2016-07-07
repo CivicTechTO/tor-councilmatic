@@ -1,0 +1,209 @@
+{% extends "base_with_margins.html" %}
+{% load extras %}
+{% load staticfiles %}
+{% block title %}{{committee.name}}{% endblock %}
+{% block content %}
+
+    <div class="row-fluid">
+        <div class="col-sm-8">
+            <br/>
+            <h1>{{committee.name}}</h1>
+            {% if committee_description %}
+                <p>{{committee_description}}</p>
+            {% endif %}
+            {% if committee.source_url %}
+                <p class="small">
+                    <a href='{{committee.source_url}}' title='View on the {{CITY_VOCAB.SOURCE}} website' target="_blank">
+                        <i class='fa fa-fw fa-external-link'></i> 
+                        View on the {{CITY_VOCAB.SOURCE}} website
+                    </a>
+                </p>
+            {% endif %}
+
+            <hr />
+
+            
+            <h4><i class='fa fa-fw fa-list-ul'></i> Recent Legislative Activity
+			    <a href="actions/rss/" title="RSS feed for Recent Legislative Activity by {{committee.name}}"><i class="fa fa-rss-square" aria-hidden="true"></i></a>
+	    </h4>
+            {% if committee.recent_activity %}
+            <div class="table-responsive">
+                <table class='table' id='committee-actions'>
+                    <thead>
+                        <tr>
+                            <th>Action</th>
+                            <th>Legislation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for action in committee.recent_activity %}
+                            <tr class="activity-row">
+                                <td class='nowrap'>
+                                    <p class="text-muted small no-pad-bottom">
+                                        {{action.date|date:'n/d/Y'}}
+                                    </p>
+                                    <p class="small no-pad-bottom">
+                                        <span class='text-{{action.label}}'>{{action.description | remove_action_subj}}</span>
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="small no-pad-bottom">
+                                        <a href="/legislation/{{action.bill.slug}}/">{{action.bill.friendly_name}}</a>
+                                    </p>
+                                    <p class="small no-pad-bottom">
+                                        {{action.bill.description | short_blurb}}
+                                    </p>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td colspan="3" align="center">
+                                <a href="" id="more-actions"><i class="fa fa-fw fa-chevron-down"></i>Show more</a>
+                                <a href="" id="fewer-actions"><i class="fa fa-fw fa-chevron-up"></i>Show fewer</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+                <p>No recent legislative activity</p>
+            {% endif %}
+
+            {% if committee.recent_events %}
+                <hr />
+
+                <h4>
+                    <i class='fa fa-fw fa-calendar-o'></i> Committee {{ CITY_VOCAB.EVENTS }}
+                    <a href="events/rss/" title="RSS feed for Committe Events by {{committee.name}}"><i class="fa fa-rss-square" aria-hidden="true"></i></a>
+                </h4>
+
+                {% for event in committee.recent_events %}
+                    <p class='event-listing'>
+                        {{event.start_time | date:'n/d/Y' }} - {{event.link_html | safe}}
+                    </p>
+                {% endfor %}
+                <a href="" id="more-events"><i class="fa fa-fw fa-chevron-down"></i>Show more</a>
+                <a href="" id="fewer-events"><i class="fa fa-fw fa-chevron-up"></i>Show fewer</a>
+            {% endif %}
+
+            <hr />
+            <h4><i class='fa fa-fw fa-group'></i> Committee Members ({{ committee.memberships.all|length }})</h4>
+            <table class='table' id='council-members'>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Committee Member</th>
+                        <th>
+                            {{CITY_VOCAB.MUNICIPAL_DISTRICT}}
+                        </th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for membership in committee.memberships.all %}
+                        <tr>
+                            <td>
+                                <div class="thumbnail-square">
+                                    <img src='{{membership.person.headshot_url}}' alt='{{membership.person.name}}' title='{{membership.person.name}}' class='img-responsive img-thumbnail' />
+                                </div>
+                            </td>
+                            <td>
+                                {{ membership.person.link_html | safe }}
+                            </td>
+                            <td>
+                                {{membership.person.current_council_seat}}
+                            </td>
+                            <td>
+                                {{membership.role}}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'js/jquery.dataTables.sorting.js' %}"></script>
+    <script src="{% static 'js/dataTables.bootstrap.js' %}"></script>
+
+    <script>
+        const ROLE_SORT_ORDER_ASC = ["Member", "Vice Chair", "Vice Chairperson", "Chair", "Chairperson"];
+
+        jQuery.fn.dataTableExt.oSort["role-desc"] = function(a, b) {
+          return ROLE_SORT_ORDER_ASC.indexOf(b) - ROLE_SORT_ORDER_ASC.indexOf(a);
+        };
+        jQuery.fn.dataTableExt.oSort["role-asc"] = function(a, b) {
+          return ROLE_SORT_ORDER_ASC.indexOf(a) - ROLE_SORT_ORDER_ASC.indexOf(b);
+        };
+
+        $("#council-members").DataTable({
+            "info": false,
+            "searching": false,
+            "bLengthChange": false,
+            "paging": false,
+            "aaSorting": [ [3,'desc'] ],
+            "aoColumns": [
+                { "bSortable": false },
+                null,
+                { "sType": "num-html" },
+                { "sType": "role" }
+            ]
+        });
+
+        $('.thumbnail-square img').each(function() {
+            if ($(this).width() > $(this).height()) {
+                $(this).addClass('landscape');
+            }
+        });
+
+
+        function collapseActivity(){
+            $(".activity-row:gt(4)").hide();
+            $("#more-actions").show();
+            $("#fewer-actions").hide();
+        }
+        function expandActivity(){
+            $(".activity-row:gt(4)").show();
+            $("#more-actions").hide();
+            $("#fewer-actions").show();
+        }
+        function collapseEvents(){
+            $(".event-listing:gt(4)").hide();
+            $("#more-events").show();
+            $("#fewer-events").hide();
+        }
+        function expandEvents(){
+            $(".event-listing:gt(4)").show();
+            $("#more-events").hide();
+            $("#fewer-events").show();
+        }
+
+        collapseActivity();
+        collapseEvents();
+
+        $("#more-actions").click(function() {
+            expandActivity();
+            return false;
+        });
+        $("#fewer-actions").click(function() {
+            collapseActivity();
+            return false;
+        });
+        $("#more-events").click(function() {
+            expandEvents();
+            return false;
+        });
+        $("#fewer-events").click(function() {
+            collapseEvents();
+            return false;
+        });
+
+        // for reference purposes
+        console.log( "OCD ID: {{committee.ocd_id}}" )
+
+    </script>
+{% endblock %}
