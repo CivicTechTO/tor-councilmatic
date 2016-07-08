@@ -10,43 +10,37 @@
   "website": "http://ocd.datamade.us/",
   "keywords": ["python", "django", "councilmatic" ],
   "env": {
-    "DJANGO_OCD_COUNCIL_ID": {
-      "required": true,
-      "value": "ocd-organization/ef168607-9135-4177-ad8e-c1f7a4806c3a"
+    "DATABASE_URL": {
+      "required": true
     },
-    "DJANGO_OCD_JURISDICTION_ID": {
-      "required": true,
-      "value": "ocd-jurisdiction/country:us/state:il/place:chicago/government"
+    "DJANGO_DEBUG": "1",
+    "CACHE_URL": {
+      "required": true
     },
-    "DJANGO_CITY_COUNCIL_NAME": {
-      "required": false,
-      "value": "Chicago City Council"
+    "DEBUG_COLLECTSTATIC": {
+      "required": true
     },
-    "DJANGO_CITY_NAME": {
-      "required": true,
-      "value": "Chicago"
+    "DJANGO_DEBUG": {
+      "required": true
     },
-    "DJANGO_CITY_NAME_SHORT": {
-      "required": false
+    "SEARCH_URL_ENVVAR": {
+      "required": true
     },
-    "DJANGO_SITE_URL": {
-      "required": false,
-      "description": "Website URL, if hosting on your own domain."
-    },
-    "DJANGO_LEGISLATIVE_SESSIONS": {
-      "required": true,
-      "value": "2007,2011,2015"
-    },
-    "DISABLE_COLLECTSTATIC": {
-      "description": "Heroku's automatic `./manage.py collectstatic` execution should be disabled for our app.",
-      "value": "1"
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
     }
   },
   "addons": [
+    "bonsai",
+    "newrelic",
     "heroku-postgresql",
-    "searchbox"
+    "scheduler"
   ],
-  "features": [
-    "runtime-dyno-metadata"
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
   ]
 }
