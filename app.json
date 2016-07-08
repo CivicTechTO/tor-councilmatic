@@ -22,10 +22,7 @@
     },
     "DJANGO_DEBUG": {
       "required": true
-    },
-    "SEARCH_URL_ENVVAR": {
-      "required": true
-    },
+    }
   },
   "formation": {
     "web": {

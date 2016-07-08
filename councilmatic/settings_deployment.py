@@ -16,10 +16,7 @@ class DeploymentConfig(object):
 
     # See: https://django-configurations.readthedocs.org/en/stable/values/#configurations.values.SearchURLValue
     # See: https://github.com/dstufft/dj-search-url
-    # Note: This will look for SEARCH_URL envvar by default, but if
-    # SEARCH_URL_ENVVAR is set to something else, it will look for an envvar
-    # with that name. For example, SEARCH_URL_ENVVAR=BONSAI_URL
-    HAYSTACK_CONNECTIONS = SearchURLValue('simple://', environ_name=os.environ.get('SEARCH_URL_ENVVAR', 'SEARCH_URL'))
+    HAYSTACK_CONNECTIONS = SearchURLValue('simple://')
 
     # See: https://django-configurations.readthedocs.org/en/stable/values/#configurations.values.CacheURLValue
     # See: https://github.com/ghickman/django-cache-url
