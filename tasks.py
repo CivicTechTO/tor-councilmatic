@@ -93,3 +93,21 @@ django.add_task(django_db_reset, 'db_reset')
 django.add_task(django_loaddata, 'loaddata')
 django.add_task(django_run, 'run')
 ns.add_collection(django)
+
+heroku = Collection('heroku')
+
+@task
+def heroku_promote_db():
+    """Promote database from staging to production"""
+    cmd = 'heroku pg:copy tor-councilmatic-staging::DATABASE tor-councilmatic::DATABASE'
+    run(cmd)
+
+@task
+def heroku_promote_code():
+    """Promote code from staging to production"""
+    cmd = 'heroku pipelines:promote --app tor-councilmatic-staging'
+    run(cmd)
+
+heroku.add_task(heroku_promote_db, 'promote_db')
+heroku.add_task(heroku_promote_code, 'promote_code')
+ns.add_collection(heroku)
