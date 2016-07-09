@@ -20,7 +20,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
   git libffi-dev libssl-dev build-essential sqlite3 \
   python3-dev python3-pip python-virtualenv \
-  openjdk-7-jre elasticsearch
+  openjdk-7-jre elasticsearch postgresql
 
 # Set virtualenv directory and create it if needed.
 virtualenv_dir="/home/vagrant/councilmatic-virtualenv"
