@@ -26,15 +26,6 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
 virtualenv_dir="/home/vagrant/councilmatic-virtualenv"
 [[ -d "$virtualenv_dir" ]] || virtualenv "$virtualenv_dir" --python=$(which python3)
 
-# Install the python requirements
-# We specify a long timeout and use-mirrors to avoid
-# errors like "SSLError: The read operation timed out"
-cd /vagrant
-"$virtualenv_dir/bin/pip" install --timeout=120 --use-mirrors --requirement /vagrant/requirements.txt
-
-# Set up the Django database
-"$virtualenv_dir/bin/python" /vagrant/manage.py migrate --no-initial-data
-
 # Set shell login message
 echo "-------------------------------------------------------
 Welcome to the Councilmatic vagrant machine
@@ -52,3 +43,12 @@ grep -qG "cd /vagrant" "$HOME/.bashrc" || echo "cd /vagrant" >> "$HOME/.bashrc"
 
 # Activate virtualenv in ~/.bashrc
 grep -qG "source $virtualenv_dir/bin/activate" "$HOME/.bashrc" || echo "source $virtualenv_dir/bin/activate" >> "$HOME/.bashrc"
+
+# Install the python requirements
+# We specify a long timeout and use-mirrors to avoid
+# errors like "SSLError: The read operation timed out"
+cd /vagrant
+"$virtualenv_dir/bin/pip" install --timeout=120 --use-mirrors --requirement /vagrant/requirements.txt
+
+# Set up the Django database
+"$virtualenv_dir/bin/python" /vagrant/manage.py migrate --no-initial-data
