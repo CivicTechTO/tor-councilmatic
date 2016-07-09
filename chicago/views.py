@@ -1,15 +1,15 @@
 from django.shortcuts import render
 from datetime import date, timedelta
-from chicago.models import ChicagoBill, ChicagoEvent, TorontoPerson, TorontoOrganization
+from chicago.models import TorontoBill, TorontoEvent, TorontoPerson, TorontoOrganization
 from councilmatic_core.models import Action
 from councilmatic_core.views import *
 from django.conf import settings
 
 
-class ChicagoIndexView(IndexView):
+class TorontoIndexView(IndexView):
     template_name = 'chicago/index.html'
-    bill_model = ChicagoBill
-    event_model = ChicagoEvent
+    bill_model = TorontoBill
+    event_model = TorontoEvent
     person_model = TorontoPerson
 
     def get_context_data(self, **kwargs):
@@ -33,12 +33,12 @@ class ChicagoIndexView(IndexView):
         # populating recent activitiy (since last council meeting)
         recent_activity = {}
 
-        new_bills = ChicagoBill.new_bills_since(date_cutoff)
+        new_bills = TorontoBill.new_bills_since(date_cutoff)
         recent_activity['new'] = new_bills
         recent_activity['new_routine'] = [b for b in new_bills if 'Routine' in b.topics]
         recent_activity['new_nonroutine'] = [b for b in new_bills if 'Non-Routine' in b.topics]
 
-        updated_bills = ChicagoBill.updated_bills_since(date_cutoff)
+        updated_bills = TorontoBill.updated_bills_since(date_cutoff)
         recent_activity['updated_routine'] = [b for b in updated_bills if 'Routine' in b.topics]
         recent_activity['updated_nonroutine'] = [b for b in updated_bills if 'Non-Routine' in b.topics]
 
@@ -77,14 +77,14 @@ class ChicagoIndexView(IndexView):
             'seo': seo,
         }
 
-class ChicagoAboutView(AboutView):
+class TorontoAboutView(AboutView):
     template_name = 'chicago/about.html'
 
 
-class ChicagoBillDetailView(BillDetailView):
-    model = ChicagoBill
+class TorontoBillDetailView(BillDetailView):
+    model = TorontoBill
 
-class ChicagoCouncilMembersView(CouncilMembersView):
+class TorontoCouncilMembersView(CouncilMembersView):
 
     def get_seo_blob(self):
         seo = {}

@@ -1,6 +1,6 @@
 from councilmatic_core.haystack_indexes import BillIndex
 from haystack import indexes
-from chicago.models import ChicagoBill
+from chicago.models import TorontoBill
 from councilmatic_core.models import Post
 from datetime import datetime
 from django.conf import settings
@@ -10,16 +10,16 @@ import pytz
 app_timezone = pytz.timezone(settings.TIME_ZONE)
 ocd_division_id = settings.OCD_JURISDICTION_ID.replace('ocd-jurisdiction', 'ocd-division').replace('/legislature', '')
 
-class ChicagoBillIndex(BillIndex, indexes.Indexable):
+class TorontoBillIndex(BillIndex, indexes.Indexable):
 
     topics = indexes.MultiValueField(faceted=True)
     wards = indexes.MultiValueField(faceted=True)
 
     def get_model(self):
-        return ChicagoBill
+        return TorontoBill
 
     def prepare(self, obj):
-        data = super(ChicagoBillIndex, self).prepare(obj)
+        data = super(TorontoBillIndex, self).prepare(obj)
 
         boost = 0
         if obj.last_action_date:
