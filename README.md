@@ -92,7 +92,7 @@ You can re-run that command to wipe the database and start fresh.
 
 
 **OPTIONAL: install django-councilmatic locally**
-If you plan on making changes to core councilmatic features (as opposed to Chicago-specific stuff), you'll want to install django-councilmatic locally instead of installing from pypi.
+If you plan on making changes to core councilmatic features (as opposed to Toronto-specific stuff), you'll want to install django-councilmatic locally instead of installing from pypi.
 
 ```bash
 cd ..
@@ -136,7 +136,7 @@ The loaddata command has some more nuance than the description above,
 for the different types of data it loads. If you have any questions,
 open up an issue and pester us to write better documentation.
 
-## Running Chicago Councilmatic locally
+## Running Toronto Councilmatic locally
 
 ``` bash
 inv django.run
