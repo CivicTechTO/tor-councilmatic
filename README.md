@@ -102,7 +102,17 @@ python setup.py develop
 cd ../tor-councilmatic
 ```
 
-## Importing data from the open civic data api
+## Importing data....
+
+There are two ways to get up and running locally with a database:
+
+**1. from a pre-generated development database**
+
+Download the latest `tor_councilmatic.db` from the [releases
+page](https://github.com/tor-councilmatic/tor-councilmatic/releases),
+and place it in the project root directory.
+
+**2. from the open civic data api**
 
 The following invoke task will run the `loaddata` management command under
 the hood. By default, it's pulling data from Toronto's OCD API endpoint
