@@ -1,6 +1,6 @@
 from councilmatic_core.haystack_indexes import BillIndex
 from haystack import indexes
-from chicago.models import TorontoBill
+from toronto.models import TorontoBill
 from councilmatic_core.models import Post
 from datetime import datetime
 from django.conf import settings

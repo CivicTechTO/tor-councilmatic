@@ -32,6 +32,6 @@ class DeploymentConfig(object):
     ANALYTICS_TRACKING_CODE = Value('')
 
     HEADSHOT_PATH = os.path.join(os.path.dirname(__file__), '..'
-                                 '/chicago/static/images/')
+                                 '/toronto/static/images/')
 
     EXTRA_APPS = ()

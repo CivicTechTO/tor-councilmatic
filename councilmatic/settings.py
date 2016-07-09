@@ -34,7 +34,7 @@ class Default(DeploymentConfig, JurisdictionConfig, Base):
     # Application definition
 
     INSTALLED_APPS = (
-        'chicago',
+        'toronto',
         'councilmatic_core',
         'haystack',
         'django.contrib.admin',

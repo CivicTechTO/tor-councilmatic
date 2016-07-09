@@ -39,7 +39,7 @@ class JurisdictionConfig(object):
     # Ref: https://github.com/jazzband/django-configurations/issues/151
     CITY_VOCAB = DictValue(city_vocab)
 
-    APP_NAME = 'chicago'
+    APP_NAME = 'toronto'
 
 
     #########################

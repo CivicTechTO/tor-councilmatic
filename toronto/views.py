@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from datetime import date, timedelta
-from chicago.models import TorontoBill, TorontoEvent, TorontoPerson, TorontoOrganization
+from toronto.models import TorontoBill, TorontoEvent, TorontoPerson, TorontoOrganization
 from councilmatic_core.models import Action
 from councilmatic_core.views import *
 from django.conf import settings
 
 
 class TorontoIndexView(IndexView):
-    template_name = 'chicago/index.html'
+    template_name = 'toronto/index.html'
     bill_model = TorontoBill
     event_model = TorontoEvent
     person_model = TorontoPerson
@@ -78,7 +78,7 @@ class TorontoIndexView(IndexView):
         }
 
 class TorontoAboutView(AboutView):
-    template_name = 'chicago/about.html'
+    template_name = 'toronto/about.html'
 
 
 class TorontoBillDetailView(BillDetailView):
@@ -104,7 +104,7 @@ class TorontoEventsView(EventsView):
         return context
 
 class TorontoEventDetailView(EventDetailView):
-    template_name = 'chicago/event.html'
+    template_name = 'toronto/event.html'
 
 class TorontoCommitteeDetailView(CommitteeDetailView):
     model = TorontoOrganization

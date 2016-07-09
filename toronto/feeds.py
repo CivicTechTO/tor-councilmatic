@@ -1,5 +1,5 @@
 from councilmatic_core.feeds import CouncilmaticFacetedSearchFeed
-from chicago.models import TorontoBill
+from toronto.models import TorontoBill
 from haystack.query import SearchQuerySet
 
 class TorontoCouncilmaticFacetedSearchFeed(CouncilmaticFacetedSearchFeed):

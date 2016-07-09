@@ -19,8 +19,8 @@ from django.views.generic.base import RedirectView
 from haystack.query import SearchQuerySet
 from councilmatic_core.views import CouncilmaticSearchForm, CouncilmaticFacetedSearchView
 from councilmatic_core.feeds import CouncilmaticFacetedSearchFeed, BillDetailActionFeed
-from chicago.views import *
-from chicago.feeds import *
+from toronto.views import *
+from toronto.feeds import *
 
 sqs = SearchQuerySet().facet('bill_type')\
                       .facet('sponsorships')\
