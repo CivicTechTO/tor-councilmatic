@@ -54,7 +54,8 @@ cd /vagrant
 "$virtualenv_dir/bin/pip" install --timeout=120 --requirement /vagrant/requirements.txt
 
 # Download starter sqlite3 database if not already present
-[ -f "tor_councilmatic.db" ] || wget --quiet https://github.com/tor-councilmatic/tor-councilmatic/releases/download/v0.0.1/tor_councilmatic.db
+release_tag=v0.0.2
+[ -f "tor_councilmatic.db" ] || wget --quiet https://github.com/tor-councilmatic/tor-councilmatic/releases/download/$release_tag/tor_councilmatic.db
 
 # Set up the Django database
 "$virtualenv_dir/bin/python" /vagrant/manage.py migrate
