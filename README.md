@@ -69,7 +69,7 @@ Once you have `virtualenv` and `virtualenvwrapper` set up:
 
 ```bash
 mkvirtualenv tor-councilmatic --python=$(which python3)
-pip install invoke
+pip install invoke==0.12.2
 git clone https://github.com/civictechto/tor-councilmatic.git
 cd tor-councilmatic
 inv pip.install
