@@ -19,12 +19,15 @@ sudo apt-get update
 sudo DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
   git libffi-dev libssl-dev build-essential sqlite3 \
-  python3-dev python3-pip python-virtualenv \
-  openjdk-7-jre elasticsearch postgresql
+  python3-dev python3-pip \
+  openjdk-7-jre elasticsearch \
+  postgresql postgresql-server-dev-all
+
+sudo pip3 install virtualenv
 
 # Set virtualenv directory and create it if needed.
 virtualenv_dir="/home/vagrant/councilmatic-virtualenv"
-[[ -d "$virtualenv_dir" ]] || virtualenv "$virtualenv_dir" --python=$(which python3)
+[ -d "$virtualenv_dir" ] || virtualenv "$virtualenv_dir" --python=$(which python3)
 
 # Set shell login message
 echo "-------------------------------------------------------
@@ -48,7 +51,12 @@ grep -qG "source $virtualenv_dir/bin/activate" "$HOME/.bashrc" || echo "source $
 # We specify a long timeout and use-mirrors to avoid
 # errors like "SSLError: The read operation timed out"
 cd /vagrant
-"$virtualenv_dir/bin/pip" install --timeout=120 --use-mirrors --requirement /vagrant/requirements.txt
+"$virtualenv_dir/bin/pip" install --timeout=120 --requirement /vagrant/requirements.txt
+
+# Download starter sqlite3 database if not already present
+release_tag=v0.0.2
+[ -f "tor_councilmatic.db" ] || wget --quiet https://github.com/tor-councilmatic/tor-councilmatic/releases/download/$release_tag/tor_councilmatic.db
 
 # Set up the Django database
-"$virtualenv_dir/bin/python" /vagrant/manage.py migrate --no-initial-data
+"$virtualenv_dir/bin/python" /vagrant/manage.py migrate
+

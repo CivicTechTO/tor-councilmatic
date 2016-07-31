@@ -11,3 +11,5 @@ whitenoise
 # Works with elasticsearch v1.x
 elasticsearch>=1.0.0,<2.0.0
 newrelic
+# This version has a bug we need to fix
+invoke<0.13.0
