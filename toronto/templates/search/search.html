@@ -126,7 +126,7 @@
 
                     {% if query %}
                         <p class="search-result">
-                            {{ result.highlighted.text.0|safe  }}
+                            {{ result.highlighted|safeseq|join:" … " }}
                         </p>
                     {% else %}
                         <p>
