@@ -29,12 +29,19 @@ workstation.
 system running safely and temporarily on your workstation.
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads): For Vagrant, which needs it.
 
-After Vagrant and VirtualBox are installed, just run this from the
-project root directory:
+After Vagrant and VirtualBox are installed, you can optionally install
+the `vagrant-cachier` plugin. This will make for speedier Vagrant runs
+after the first one, as it will cache the many download files used in
+preparing Vagrant's virtual machine:
+
+    vagrant plugin install vagrant-cachier
+
+Then, just run this from the project root directory:
 
     vagrant up
 
-Follow the instructions provided when the command completes.
+Follow the instructions provided when the command completes. (Hint:
+`vagrant ssh` will get you started.)
 
 It may take quite awhile the first time your run it, as several large
 downloads will need to occur.
@@ -43,6 +50,11 @@ When you're done working, you can run the following command to free up
 system resources:
 
     vagrant halt
+
+If you no longer plan to use Vagrant to develop for `tor-councilmatic`,
+be sure to use this to free up disk space:
+
+    vagrant destroy
 
 You can find more details on using Vagrant
 [here](https://www.vagrantup.com/docs/getting-started/teardown.html).
