@@ -1,8 +1,8 @@
 # Toronto Councilmatic
 
-[![Current Milestone in HuBoard](https://img.shields.io/badge/issues-see_current_milestone-cc0000.svg)](https://huboard.com/CivicTechTO/tor-councilmatic#/?milestone=["Public Launch"])
-[![HuBoard: Ready](https://img.shields.io/github/issues-raw/civictechto/tor-councilmatic/1 - Ready.svg?label=ready)](https://huboard.com/CivicTechTO/tor-councilmatic#/?milestone=["Public Launch"])
-[![HuBoard: In Progress](https://img.shields.io/github/issues-raw/civictechto/tor-councilmatic/2 - In Progress <= 5.svg?label=in progress)](https://huboard.com/CivicTechTO/tor-councilmatic#/?milestone=["Public Launch"])
+[![Current Milestone in HuBoard](https://img.shields.io/badge/issues-see_current_milestone-cc0000.svg)](https://huboard.com/to-councilmatic/tor-councilmatic#/?milestone=["Public Launch"])
+[![HuBoard: Ready](https://img.shields.io/github/issues-raw/tor-councilmatic/tor-councilmatic/1 - Ready.svg?label=ready)](https://huboard.com/tor-councilmatic/tor-councilmatic#/?milestone=["Public Launch"])
+[![HuBoard: In Progress](https://img.shields.io/github/issues-raw/tor-councilmatic/tor-councilmatic/2 - In Progress <= 5.svg?label=in progress)](https://huboard.com/tor-councilmatic/tor-councilmatic#/?milestone=["Public Launch"])
 
 Keep track of what Toronto City Council is doing.
 
@@ -82,7 +82,7 @@ Once you have `virtualenv` and `virtualenvwrapper` set up:
 ```bash
 mkvirtualenv tor-councilmatic --python=$(which python3)
 pip install invoke==0.12.2
-git clone https://github.com/civictechto/tor-councilmatic.git
+git clone https://github.com/tor-councilmatic/tor-councilmatic.git
 cd tor-councilmatic
 inv pip.install
 ```
