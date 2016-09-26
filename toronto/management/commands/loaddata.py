@@ -152,7 +152,10 @@ class Command(BaseCommand):
         if page_json['sources']:
             source_url = page_json['sources'][0]['url']
 
+        if DEBUG: print(page_json['id'])
+
         if parent:
+            if DEBUG: print('parent')
             try:
                 org_obj, created = Organization.objects.get_or_create(
                     ocd_id=organization_ocd_id,
@@ -173,6 +176,7 @@ class Command(BaseCommand):
                     _parent=parent,
                 )
         else:
+            if DEBUG: print('not parent')
             try:
                 org_obj, created = Organization.objects.get_or_create(
                     ocd_id=organization_ocd_id,
