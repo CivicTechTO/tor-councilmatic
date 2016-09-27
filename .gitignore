@@ -66,4 +66,5 @@ static/**
 
 .vagrant/
 src/
-tor_councilmatic.db
+*.db
+*.db.bak
