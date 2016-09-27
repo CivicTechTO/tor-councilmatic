@@ -108,3 +108,12 @@ class TorontoEventDetailView(EventDetailView):
 
 class TorontoCommitteeDetailView(CommitteeDetailView):
     model = TorontoOrganization
+
+def toronto_context(request):
+    relevant_settings = [
+        'POLIS_SITE_ID',
+    ]
+
+    toronto_context = {s: getattr(settings, s, None) for s in relevant_settings}
+
+    return toronto_context

@@ -77,6 +77,7 @@ class Default(DeploymentConfig, JurisdictionConfig, Base):
                     'django.contrib.auth.context_processors.auth',
                     'django.contrib.messages.context_processors.messages',
                     'councilmatic_core.views.city_context',
+                    'toronto.views.toronto_context',
                 ],
             },
         },

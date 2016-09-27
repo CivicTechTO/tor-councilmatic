@@ -11,6 +11,8 @@ class DeploymentConfig(object):
     # Set this to True while you are developing
     DEBUG = BooleanValue(True)
 
+    POLIS_SITE_ID = Value(None)
+
     # See: https://django-configurations.readthedocs.org/en/stable/values/#configurations.values.DatabaseURLValue
     DATABASES = DatabaseURLValue('sqlite:///tor_councilmatic.db')
 
