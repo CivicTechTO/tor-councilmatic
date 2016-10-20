@@ -13,6 +13,9 @@ class DeploymentConfig(object):
 
     POLIS_SITE_ID = Value(None)
 
+    # Unrestricted staging key (disposable)
+    GMAPS_API_KEY = Value('AIzaSyDVJdClcbq1ioJUeySpPgNiDndQEspN6Ck')
+
     # See: https://django-configurations.readthedocs.org/en/stable/values/#configurations.values.DatabaseURLValue
     DATABASES = DatabaseURLValue('sqlite:///tor_councilmatic.db')
 

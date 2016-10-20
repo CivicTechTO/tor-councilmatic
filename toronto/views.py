@@ -112,6 +112,7 @@ class TorontoCommitteeDetailView(CommitteeDetailView):
 def toronto_context(request):
     relevant_settings = [
         'POLIS_SITE_ID',
+        'GMAPS_API_KEY',
     ]
 
     toronto_context = {s: getattr(settings, s, None) for s in relevant_settings}
