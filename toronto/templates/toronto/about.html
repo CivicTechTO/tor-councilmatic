@@ -7,13 +7,13 @@
         <br class="non-mobile-only"/>
         <h1 id='about'>About</h1>
 
-        <p><strong>Toronto Councilmatic</strong> tracks all things related to Toronto City Council: the <a href='/search/' target="_blank">legislation</a> introduced and passed, its various <a href='/committees/' target="_blank">committees</a> and the <a href='/events/' target="_blank">meetings</a> they hold, and the <a href='/council-members/' target="_blank">aldermen</a> themselves.</p>
+        <p><strong>Toronto Councilmatic</strong> tracks all things related to Toronto City Council: the <a href='/search/' target="_blank">legislation</a> introduced and passed, the various <a href='/committees/' target="_blank">committees</a> and the <a href='/events/' target="_blank">meetings</a> they hold, and the <a href='/council-members/' target="_blank">councillors</a> themselves.</p>
 
-        <p>You can search and browse legislation from 2011 onwards. Some interesting searches include:</p>
+        <p>You can search and browse legislation from 2014 onwards. Some interesting searches include:</p>
 
         <ul>
-            <li><a href="/search/?selected_facets=topics_exact:Ward%20Matters&selected_facets=wards_exact%3ATrinity-Spadina%20(20)" target="_blank">legislation specifically concerning Ward 20</a></li>
-            <li><a href="/search/?selected_facets=topics_exact:Member Motion&selected_facets=sponsorships_exact%3AGord Perks" target="_blank">"Member Motions" sponsored by Gord Perks</a></li>
+            <li><a href="/search/?selected_facets=topics_exact:Ward Matters&selected_facets=wards_exact:Trinity-Spadina (20)" target="_blank">legislation specifically concerning Ward 20</a></li>
+            <li><a href="/search/?selected_facets=topics_exact:Member Motion&selected_facets=sponsorships_exact:Gord Perks" target="_blank">"Member Motions" sponsored by Gord Perks</a></li>
         </ul>
 
         <p>Toronto Councilmatic is a free and easy way to access official Toronto City Council information.</p>
@@ -61,7 +61,7 @@
         <br/><br/>
         <h3>What is Toronto City Council, and how does it work?</h3>
 
-        <p>Toronto City Council is the legislative body of the City of Toronto. It consists of <a href='/council-members' target="_blank">44 elected councillors</a>, each representing one of Toronto's wards. City Council meets monthly and is presided over by <a href='/person/john-tory/' target="_blank">John Tory</a>, the Mayor of Toronto. The secretary is <a href='http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=07b700ad867a0410VgnVCM10000071d60f89RCRD' target="_blank">Ulli S. Watkiss</a>, City Clerk of Toronto</a>.</p>
+        <p><a href="https://en.wikipedia.org/wiki/Toronto_City_Council" target="_blank">Toronto City Council</a> is the legislative body of the City of Toronto. It consists of the Mayor and <a href='/council-members' target="_blank">44 elected Councillors</a>, each representing one of Toronto's wards. City Council meets monthly and is presided over by <a href='/person/john-tory/' target="_blank">John Tory</a>, the Mayor of Toronto. The secretary is <a href='http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=07b700ad867a0410VgnVCM10000071d60f89RCRD' target="_blank">Ulli S. Watkiss</a>, City Clerk of Toronto</a>.</p>
 
         <p>Generally, Toronto City Council deals with the following topics:</p>
 
@@ -71,11 +71,18 @@
             <li><a href='/search/?&selected_facets=topics_exact:Residents' target="_blank">matters involving individuals</a> - miscellaneous claims & honorifics</li>
         </ul>
 
-        <p>For the nitty-gritty on how Toronto City Council works, read about its <a href='http://chicityclerk.com/city-council-news-central/council-agenda' target="_blank">structure</a> and <a href='http://www.chicityclerk.com/city-council-news-central/rules-order' target="_blank">rules</a> from the City Clerk.</p>
+        <p>For the nitty-gritty on how Toronto City Council works, read learning guides about its <a href="http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=762b6804e1f22410VgnVCM10000071d60f89RCRD" target="_blank">structure</a>, <a href="http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=eb6d0f1025c21410VgnVCM10000071d60f89RCRD" target="_blank">member roles</a> and <a href="http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=e26d0f1025c21410VgnVCM10000071d60f89RCRD" target="_blank">general decision-making</a> from the City Clerk.</p>
+
+        <p>For the nitty-grittiest:</p>
+
+        <ul>
+          <li><a href="https://www.ontario.ca/laws/statute/06c11" target="_blank">City of Toronto Act</a> is the main piece of legislation in which the city's powers are defined.</li>
+          <li><a href="http://www.toronto.ca/legdocs/municode/1184_027.pdf" target="_blank">Chapter 27, Council Procedures</a> of the <a href="http://www.toronto.ca/legdocs/bylaws/lawmcode.htm" target="_blank">Toronto Municipal Code</a>.</li>
+        </ul>
 
         <br/>
         <h4>Types of legislation</h4>
-        <p>Below are the categories of legislation in Toronto:</p>
+        <p>Below are the types of agenda items that come before City Council.</p>
 
         {% include 'partials/component_bill_type_table.html' %}
 
@@ -94,7 +101,7 @@
         <h3>We're open source!</h3>
 
         <p>
-            This website is open source and on <a href="https://github.com/datamade/chi-councilmatic" target="_blank">GitHub</a> - meaning that anyone can re-use or adapt the code.
+            This website is open source and on <a href="https://github.com/tor-councilmatic/tor-councilmatic" target="_blank">GitHub</a> - meaning that anyone can re-use or adapt the code.
         </p>
     </div>
 </div>
@@ -106,7 +113,7 @@
 
         <p>The data from this website comes from the <a href="http://app.toronto.ca/tmmis/index.do" target="_blank">Toronto Meeting Management Information System (TMMIS) site</a>, a system built custom for Toronto by the <a href='http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=a7b78b206f2ef310VgnVCM10000071d60f89RCRD' target="_blank">Toronto City Clerk's Office</a>. The data is managed by the <a href='http://www1.toronto.ca/wps/portal/contentonly?vgnextoid=a7b78b206f2ef310VgnVCM10000071d60f89RCRD' target="_blank">City Clerk's Office</a>. On Councilmatic, each piece of legislation provides a link to its source for reference.</p>
 
-        <p>This data is then collected daily with the help of the <a href='http://webapi.legistar.com/' target="_blank">Legistar Web API</a> and stored using the <a href="http://opencivicdata.org/about/" target="_blank">Open Civic Data</a> standard and platform. Open Civic Data standardizes information about people, organizations, events and bills at any level of government and was built in collaboration with <a href="http://sunlightfoundation.com/" target="_blank">The Sunlight Foundation</a>, <a href="https://developers.google.com/civic-information/?hl=en" target="_blank">Google</a>, <a href="http://www.granicus.com/" target="_blank">Granicus</a> and <a href="http://www.opennorth.ca/" target="_blank">Open North</a>.
+        <p>This data is then collected daily with the help of the <a href='https://github.com/tor-councilmatic/scrapers-ca/tree/develop/ca_on_toronto' target="_blank">custom web scrapers</a> and stored using the <a href="http://opencivicdata.org/about/" target="_blank">Open Civic Data</a> standard and platform. Open Civic Data standardizes information about people, organizations, events and bills at any level of government and was built in collaboration with <a href="http://sunlightfoundation.com/" target="_blank">The Sunlight Foundation</a>, <a href="https://developers.google.com/civic-information/?hl=en" target="_blank">Google</a>, <a href="http://www.granicus.com/" target="_blank">Granicus</a> and <a href="http://www.opennorth.ca/" target="_blank">Open North</a>.
         </p>
 
         <p><a href='http://opencivicdata.org' target="_blank"><img style='height:100px;' src='/static/images/ocd.jpg' /></a></p>
