@@ -112,7 +112,7 @@ class JurisdictionConfig(object):
 
     # these should live in APP_NAME/static/
     IMAGES = {
-        'logo': 'images/logo.png',
+        'logo': 'images/metro-toronto-logo.png',
     }
     # you can generate icons from the logo at http://www.favicomatic.com/
     # & put them in APP_NAME/static/images/icons/
