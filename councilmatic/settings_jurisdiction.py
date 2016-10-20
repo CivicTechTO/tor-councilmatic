@@ -133,67 +133,27 @@ class JurisdictionConfig(object):
     # describing legislation types on the about page template
     LEGISLATION_TYPE_DESCRIPTIONS = [
         {
-            'name': 'Ordinance',
-            'search_term': 'Ordinance',
-            'fa_icon': 'file-text-o',
+            'name': 'Action Items',
+            'search_term': 'Action',
+            'fa_icon': 'check-square-o',
             'html_desc': True,
-            'desc': 'Ordinances are proposed changes to Chicago’s local laws. Some of these are changes to Chicago’s Municipal Code and others, called uncompiled statutes, are recorded in the Council’s Journal of Proceedings.',
+            'desc': "Generally, these items are seeking some kind of direction or resolution from Council or Committee. Usually there are proposed recommendations which Council or Committee can adopt or amend by vote.",
 
         },
         {
-            'name': 'Claim',
-            'search_term': 'Claim',
-            'fa_icon': 'dollar',
+            'name': 'Information Reports',
+            'search_term': 'Information',
+            'fa_icon': 'pie-chart',
             'html_desc': True,
-            'desc': "If you are harmed by the City of Chicago, you can make a claim against the City for your costs. Minor harms, like personal injury or automotive damage, are settled through City Council as Claims. If you sue the City for harm and come to a settlement, the settlement must also be approved by the Council.",
+            'desc': "A City official's report that advises and informs without recommending. <br />A vote is required to dispose of the item (normally, a <em>motion to receive</em>).",
 
         },
         {
-            'name': 'Resolution',
-            'search_term': 'Resolution',
-            'fa_icon': 'commenting-o',
-            'html_desc': True,
-            'desc': "Resolutions are typically symbolic, non-binding documents used for calling someone or some organization to take an action, statements announcing the City Council's intentions or honoring an individual.",
-
-        },
-        {
-            'name': 'Order',
-            'search_term': 'Order',
-            'fa_icon': 'file-text-o',
-            'html_desc': True,
-            'desc': "Orders direct a City Agency to do or not do something. They are typically used for ward matters like issuing business permits, designating parking zones and installing new signs and traffic signals.",
-
-        },
-        {
-            'name': 'Appointment',
-            'search_term': 'Appointment',
-            'fa_icon': 'user',
-            'html_desc': True,
-            'desc': "Used for appointing individuals to positions within various official City of Chicago and intergovernmental boards.",
-
-        },
-        {
-            'name': 'Report',
-            'search_term': 'Report',
-            'fa_icon': 'file-text-o',
-            'html_desc': True,
-            'desc': "Submissions of official reports by departments, boards and sister agencies. ",
-
-        },
-        {
-            'name': 'Communication',
-            'search_term': 'Communication',
+            'name': 'Presentations',
+            'search_term': 'Presentation',
             'fa_icon': 'bullhorn',
             'html_desc': True,
-            'desc': "Similar to reports and used for notifying City Council of intentions or actions.",
-
-        },
-        {
-            'name': 'Oath Of Office',
-            'search_term': 'Oath Of Office',
-            'fa_icon': 'user',
-            'html_desc': True,
-            'desc': "Official swearing in of individuals to leadership positions at the City of Chicago, including Aldermen and board members.",
+            'desc': "Normally a verbal update, a ceremonial presentation or presentations to the committee without a covering report, such as slide presentations or playing of videos. <br />A vote is required to dispose of the item (normally, a <em>motion to receive</em>).",
 
         },
     ]
