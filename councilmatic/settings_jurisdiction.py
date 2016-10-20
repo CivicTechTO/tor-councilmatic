@@ -179,13 +179,13 @@ class JurisdictionConfig(object):
     }
 
     ABOUT_BLURBS = {
-        "COMMITTEES" : "<p>Most meaningful legislative activity happens in committee meetings, where committee members debate proposed legislation. These meetings are open to the public.</p>\
-                        <p>Each committee has a Chair, who controls the committee meeting agenda (and thus, the legislation to be considered).</p>\
+            "COMMITTEES" : "<p>Most meaningful legislative activity happens in committee meetings, where committee members debate proposed legislation. These meetings are open to the public. Unlike City Council meetings, committee meetings allow for public presentations.<br/><a href='http://www.toronto.ca/legdocs/tmmis/have-your-say.htm' target='_blank'>Find out how »</a></p>\
+                        <p>Each committee has a Chair. Along with the City Clerk, the Chair shapes the committee meeting agenda (and thus, the legislation to be considered).</p>\
                         <p>Committee jurisdiction, memberships, and appointments all require City Council approval.</p>",
         "EVENTS":       "<p>There are two types of meetings: committee meetings and full city council meetings.</p>\
-                        <p>Most of the time, meaningful legislative debate happens in committee meetings, which occur several times a month.</p>\
+                        <p>Most of the time, meaningful legislative debate happens in committee meetings, which at scheduled at regular intervals depending on the committee.</p>\
                         <p>Meetings of the entire City Council generally occur once a month at City Hall.</p>\
-                        <p>All City Council meetings are open to public participation.</p>",
+                        <p>All committee and City Council meetings are open to the public.</p>",
         "COUNCIL_MEMBERS": ""
 
     }
