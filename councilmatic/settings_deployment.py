@@ -17,7 +17,7 @@ class DeploymentConfig(object):
     GMAPS_API_KEY = Value('AIzaSyDVJdClcbq1ioJUeySpPgNiDndQEspN6Ck')
     # Set this to a "frozen version" in production
     # See: https://developers.google.com/maps/documentation/javascript/versions#the-frozen-version
-    GMAPS_API_VERISON = Value('3.exp')
+    GMAPS_API_VERSION = Value('3.exp')
 
     # See: https://django-configurations.readthedocs.org/en/stable/values/#configurations.values.DatabaseURLValue
     DATABASES = DatabaseURLValue('sqlite:///tor_councilmatic.db')
