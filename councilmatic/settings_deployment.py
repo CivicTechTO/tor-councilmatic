@@ -15,6 +15,7 @@ class DeploymentConfig(object):
 
     # Unrestricted staging key (disposable)
     GMAPS_API_KEY = Value('AIzaSyDVJdClcbq1ioJUeySpPgNiDndQEspN6Ck')
+    GMAPS_API_VERISON = Value('3.exp')
 
     # See: https://django-configurations.readthedocs.org/en/stable/values/#configurations.values.DatabaseURLValue
     DATABASES = DatabaseURLValue('sqlite:///tor_councilmatic.db')
