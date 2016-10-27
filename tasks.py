@@ -99,7 +99,7 @@ heroku = Collection('heroku')
 @task
 def heroku_promote_db():
     """Promote database from staging to production"""
-    cmd = 'heroku pg:copy tor-councilmatic-staging::DATABASE tor-councilmatic::DATABASE'
+    cmd = 'heroku pg:copy tor-councilmatic-staging::DATABASE tor-councilmatic::DATABASE --confirm tor-councilmatic'
     run(cmd)
 
     cmd = 'heroku run --app tor-councilmatic python manage.py rebuild_index'
