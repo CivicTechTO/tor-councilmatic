@@ -367,6 +367,9 @@ class Command(BaseCommand):
         if page_json['extras'].get('local_classification'):
             bill_type = page_json['extras']['local_classification']
 
+        elif page_json['extras'].get('type'):
+            bill_type = page_json['extras']['type'].lower()
+
         elif len(page_json['classification']) == 1:
             bill_type = page_json['classification'][0]
 
