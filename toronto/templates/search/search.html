@@ -46,9 +46,7 @@
 
             <!-- Legislation Type -->
             {% with facet_name='bill_type' facet_label='Legislation Type' item_list=facets.fields.bill_type selected_list=selected_facets.bill_type %}
-                {% if facets.fields.bill_type|length > 1 %}
-                  {% include 'partials/search_filter.html' %}
-                {% endif %}
+                {% include 'partials/search_filter.html' %}
             {% endwith %}
 
 
