@@ -102,7 +102,7 @@ def heroku_promote_db():
     cmd = 'heroku pg:copy tor-councilmatic-staging::DATABASE tor-councilmatic::DATABASE --confirm tor-councilmatic'
     run(cmd)
 
-    cmd = 'heroku run --app tor-councilmatic python manage.py rebuild_index'
+    cmd = 'heroku run --app tor-councilmatic python manage.py rebuild_index --noinput'
     run(cmd)
 
 @task
