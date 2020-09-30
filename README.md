@@ -9,7 +9,7 @@ Keep track of what Toronto City Council is doing.
 Click the "HuBoard" button above to see the tasks that are part of our
 current milestone.
 
-## Getting Started
+## Getting Started Now
 
 Setup instructions will vary, depending on whether you're using
 [Windows](#windows) or [Mac/Linux](#mac--linux).
@@ -62,7 +62,7 @@ You can find more details on using Vagrant
 ### Mac / Linux
 
 We'll be running the app directly on your workstation. You won't need a
-powerful system for this approach. (Yay!)
+powerful system for this approach. So don't worry and enjoy!!
 
 **Requirements:**
 
