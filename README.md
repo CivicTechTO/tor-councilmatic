@@ -1,4 +1,4 @@
-# Toronto Councilmatic
+# Toronto Councilmatic - An Amazing Project
 
 [![Current Milestone in HuBoard](https://img.shields.io/badge/issues-see_current_milestone-cc0000.svg)](https://huboard.com/CivicTechTO/tor-councilmatic#/?milestone=["Public Launch"])
 [![HuBoard: Ready](https://img.shields.io/github/issues-raw/civictechto/tor-councilmatic/1 - Ready.svg?label=ready)](https://huboard.com/CivicTechTO/tor-councilmatic#/?milestone=["Public Launch"])
