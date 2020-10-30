@@ -114,7 +114,7 @@ python setup.py develop
 cd ../tor-councilmatic
 ```
 
-## Importing data....
+## Data Insertion.....
 
 There are two ways to get up and running locally with a database:
 
@@ -183,7 +183,7 @@ You can then run Councilmatic using Elasticsearch like so:
 inv django.run --elasticsearch
 ```
 
-## Team
+## Team Members
 
 * David Moore - project manager
 * Forest Gregg - Open Civic Data (OCD) and Legistar scraping
@@ -191,7 +191,7 @@ inv django.run --elasticsearch
 * Derek Eder - front end
 * Eric van Zanten - search and dev ops
 
-## Errors / Bugs
+## Errors / Bugs/ Mistecs
 
 If something is not behaving intuitively, it is a bug, and should be reported.
 Report it here: https://github.com/datamade/chi-councilmatic/issues
